@@ -8,13 +8,18 @@
 
 {% block styles %}
 {{super()}}
+<link href="{{ url_for('static', filename='mdburst.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block scripts %}
 {{super()}}
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-sanitize.js"></script>
 <script src="{{ url_for('static', filename='main.js') }}"></script>
 <script src="{{ url_for('bower.static', filename='showdown/dist/showdown.js') }}"></script>
+<script src="/bower/showdown-table/dist/showdown-table.js"></script>
+
+
 {% endblock %}
 
 {% block navbar %}
@@ -29,8 +34,25 @@ ng-controller="mdBurst-api-controller"
 
 
 {% block content %}
-<div class="container">
-  <!-- header -->
-  <h1 class="display-3">mdBurst-API</h1>
+
+<div class="jumbotron">
+  <div class="container">
+    <!-- header -->
+    <h1 class="display-3">mdBurst</h1>
+  </div>
 </div>
+
+<div class="container-fluid" ng-controller="mdBurst-api-controller"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
+            <div class="mkdown_input" class="row" ng-cloak style="background-color: red">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="background-color: blue">
+                  <textarea class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" ng-model="main_input"></textarea>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
+                  <p ng-bind-html="main_input_tohmtl">{{main_input_tohmtl|angular}}</p>
+                </div>
+            </div>
+</div>
+
+
 {% endblock %}

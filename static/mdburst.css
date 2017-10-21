@@ -1,0 +1,121 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.mkdown_input{
+  height:600px;
+}
+
+.mkdown_input textarea{
+  height:100%;
+  margin-left: 0px;
+  height:600px;
+}
+
+.mkdown_input p{
+  background-color: yellow;
+}
+
+/* elements TABLE */
+table {
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    width:100%;
+    min-width: 200px;
+}
+
+th, td {
+  border: 1px solid lightgray;
+  text-align: left;
+  padding: 8px;
+}
+
+td:not(:last-child){
+    white-space: nowrap;
+}
+
+td:last-child{
+    width: 100%;
+}
+
+hr{
+    border: 0.5px solid lightgray;
+}
+
+.row_30_px{
+  width: 30px;
+}
+
+.blank_row{
+  border-right: 0px solid;
+  border-left: 0px solid;
+  background-color: #eeeeee;
+  text-align: left;
+  position: relative;
+}
+
+/*tr:nth-child(even){background-color: #f2f2f2}*/
+
+/* elements image */
+img {
+ border: 0 none!important;
+ max-width: 100%!important;
+ vertical-align: middle!important;
+}
+
+/* elements emoji */
+.emojione {
+    height: 20px;
+    width: 20px;
+}
+
+/* elements toc */
+.toc {
+    display: none;
+    margin-left: -10px;
+    font-size: small;
+}
+
+.toc ul{
+  margin-left:-20px;
+}
+
+.naavbar{
+    background-color: black;
+}
+
+.naavbar a{
+  color: #cccccc;
+}
+
+/* header */
+.jumbotron{
+  background-color: #3a9c83;
+  color: white;
+  margin-top: -20px;
+}
+
+/* sidebar */
+#sidebar .toc{
+  display: block;
+  padding-top: 20px;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 200px;
+}
+
+#footer {
+  background-color: #424242;
+  width: 100%;
+  margin-top: 40px;
+  padding: 40px;
+  color: white;
+  position: absolute;
+  bottom: 0px;
+}
