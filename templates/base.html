@@ -1,12 +1,20 @@
 {% extends "bootstrap/base.html" %}
 {% block title %}This is an example page{% endblock %}
 
+{% block html %}
+{{super()}}
+<html ng-app="mdBurst-api">
+{% endblock %}
+
 {% block styles %}
 {{super()}}
 {% endblock %}
 
 {% block scripts %}
 {{super()}}
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+<script src="{{ url_for('bower.static', filename='showdown/dist/showdown.js') }}"></script>
 {% endblock %}
 
 {% block navbar %}
@@ -15,6 +23,14 @@
 </div>
 {% endblock %}
 
+{% block body_attribs %}
+ng-controller="mdBurst-api-controller"
+{% endblock %}
+
+
 {% block content %}
-  <h1>Hello, Bootstrap</h1>
+<div class="container">
+  <!-- header -->
+  <h1 class="display-3">mdBurst-API</h1>
+</div>
 {% endblock %}
