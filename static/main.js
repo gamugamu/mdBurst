@@ -6,8 +6,7 @@
 
   .controller('mdBurst-api-controller', ['$scope','$log', '$http', '$sce',
     function($scope, $log, $http, $sce) {
-      var toc                   = require('markdown-toc');
-      var converter             = new showdown.Converter({/*extensions: ['toc'],*/ tables: true, ghCompatibleHeaderId: true, simpleLineBreaks: true, emoji:true});
+      var converter             = new showdown.Converter({tables: true, ghCompatibleHeaderId: true, simpleLineBreaks: true, emoji:true});
       showdown.getOptions();
 
       var defaultOptions        = showdown.getOptions();
