@@ -42,13 +42,7 @@ ng-controller="mdBurst-api-controller"
   </div>
 </div>
 
-{{ url_for("upload_file2", filename=file) }}
-
-<div id="file-drop" imagedrop on-image-drop="imageDropped()">
-    Dfdsrop an image here to upload
-</div>
-
-<div class="container-fluid" ng-controller="mdBurst-api-controller"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
+<div class="container-fluid" ng-controller="mdBurst-api-controller" imagedrop on-image-drop="imageDropped()"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
             <div class="mkdown_input" class="row" ng-cloak>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                   <textarea class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" ng-keyup="$event.keyCode === 13 && convert_showdown(main_input)" ng-model="main_input"></textarea>
@@ -59,7 +53,5 @@ ng-controller="mdBurst-api-controller"
                 </div>
             </div>
 </div>
-
-
 
 {% endblock %}

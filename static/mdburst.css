@@ -8,7 +8,7 @@ body {
 
 body.dragOver #file-drop{display:block; background-color: red;} /* During drag */
 
-body #file-drop{z-index:1000;position:fixed;top:0;left:0;width:100%;height:100%;background-color: yellow;} /* No drag */
+body #file-drop{width:50%;height:50%;background-color: yellow;} /* No drag */
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
