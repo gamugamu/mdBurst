@@ -11,7 +11,7 @@
       $scope.main_input_tohmtl  = "";
 
       $scope.convert_showdown = function(text) {
-          text        = parsetest(text)
+          text        = parseMdForToc(text)
           $scope.html = converter.makeHtml(text);
           return $scope.html;
       };
@@ -24,16 +24,14 @@
       //Drop uploads
       $scope.imageDropped = function(){
           //Get the file
-          var file = $scope.uploadedFile;
           var fd = new FormData();
-          fd.append('file', file);
+          fd.append('file', $scope.uploadedFile);
 
           $http.post("/upload2", fd,{
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined},
            })
           .success(function (data) {
-            console.log("ssuccess data", data);
             $scope.main_input += "\n![](" + data + ")"
           })
           .error(function (error) {

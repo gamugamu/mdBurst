@@ -15,18 +15,13 @@ body #file-drop{width:50%;height:50%;background-color: yellow;} /* No drag */
 }
 
 /* m */
-
-.mkdown_input{
-  height:600px;
-}
-
 .mkdown_input textarea{
-  height:100%;
-  margin-left: 0px;
   height:600px;
 }
 
-.mkdown_input p{
+.mkdown_output{
+  height:600px;
+  overflow-y: scroll;
 }
 
 /* elements TABLE */
@@ -86,7 +81,7 @@ img {
 
 /* header */
 .jumbotron{
-  background-color: #3a9c83;
+  background-color: #2ca243;
   color: white;
   margin-top: -20px;
 }

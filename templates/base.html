@@ -42,14 +42,22 @@ ng-controller="mdBurst-api-controller"
   </div>
 </div>
 
-<div class="container-fluid" ng-controller="mdBurst-api-controller" imagedrop on-image-drop="imageDropped()"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
-            <div class="mkdown_input" class="row" ng-cloak>
+<div class                  = "mkdown_input container-fluid"
+    ng-controller           = "mdBurst-api-controller"
+    imagedrop on-image-drop = "imageDropped()">
+            <div class="row" ng-cloak>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                  <textarea class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" ng-keyup="$event.keyCode === 13 && convert_showdown(main_input)" ng-model="main_input"></textarea>
+                  <textarea
+                    class     = "form-control ng-valid ng-dirty ng-valid-parse ng-touched"
+                    ng-keyup  = "$event.keyCode === 13 && convert_showdown(main_input)"
+                    ng-model  = "main_input">
+                  </textarea>
                 </div>
 
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
-                  <p ng-bind-html="main_input_tohmtl">{{main_input_tohmtl|angular}}</p>
+                <div class = "col-xs-6 col-sm-6 col-md-6 col-lg-6 mkdown_output">
+                  <p ng-bind-html = "main_input_tohmtl">
+                    {{main_input_tohmtl|angular}}
+                  </p>
                 </div>
             </div>
 </div>
