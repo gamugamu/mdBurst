@@ -2,7 +2,6 @@
 // Note impossible de trouver une libre pour générer des tocs. Je l'ai donc écrites moi même.
 // TOC generator
 function parsetest(text) {
-  console.log("parsetest")
   if (text.includes("[toc]")){
     var lines         = text.split('\n');
     var generated_toc = "<ul>"

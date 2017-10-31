@@ -4,16 +4,11 @@ from werkzeug import secure_filename
 from flask import send_from_directory
 
 APP_ROOT            = os.path.dirname(os.path.abspath(__file__))
-print "APP_ROOT ", APP_ROOT
 UPLOAD_FOLDER       = os.path.join(APP_ROOT, '../static/img')
-print "UPLOAD_FOLDER ", UPLOAD_FOLDER
-
 ALLOWED_EXTENSIONS  = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 
 def FileUpload(app):
-    print "NEW *****"
-    print "UPLOAD_FOLDER", UPLOAD_FOLDER
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
     def allowed_file(filename):
@@ -45,6 +40,16 @@ def FileUpload(app):
         <input type=submit value=Upload>
         </form>
         '''
+
+    @app.route('/upload2', methods=['POST'])
+    def upload_file2():
+        file = request.files['file']
+        
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('uploaded_file', filename=filename))
+
 
     @app.route('/uploads/<filename>')
     def uploaded_file(filename):

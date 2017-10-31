@@ -8,7 +8,7 @@ _MDBurst est un site-web permettant de diffuser simplement de la documentation m
 
 MDBurst se compose d'une page d'acceuil où l'on retrouve la liste des derniers posts en cours. Listé par ordre chronologique, tout les posts peuvent être accessibles depuis la page d'acceuil, sans changer de page, en accordéon. L'interface est minimaliste: le but est de poster et lire de la documentation **le plus rapidement possible** et en un **minimum de clics**.
 
-L'interface permet de créer des dossiers et sous-dossiers afin d'organiser l'ensemble des documents. Les dossiers se déploient de la même manière que les documents, en accordéon; sauf que ceux-ci dévoilent une sous arborescence de fichier ou de sous-dossier.
+L'interface permet de créer des dossiers et sous-dossiers afin d'organiser l'ensemble des documents. Les dossiers se déploient de la même manière que les documents, en accordéon; sauf que ceux-ci dévoilent une sous-arborescence de fichiers ou de sous-dossiers.
 
 
 ---

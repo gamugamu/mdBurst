@@ -1,3 +1,7 @@
+# Site - folder exclude
+static/img/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

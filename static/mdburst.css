@@ -1,6 +1,20 @@
+/* Body */
+body {
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 200px;
+}
+
+body.dragOver #file-drop{display:block; background-color: red;} /* During drag */
+
+body #file-drop{z-index:1000;position:fixed;top:0;left:0;width:100%;height:100%;background-color: yellow;} /* No drag */
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
+/* m */
 
 .mkdown_input{
   height:600px;
@@ -70,25 +84,6 @@ img {
     width: 20px;
 }
 
-/* elements toc */
-.toc {
-    display: none;
-    margin-left: -10px;
-    font-size: small;
-}
-
-.toc ul{
-  margin-left:-20px;
-}
-
-.naavbar{
-    background-color: black;
-}
-
-.naavbar a{
-  color: #cccccc;
-}
-
 /* header */
 .jumbotron{
   background-color: #3a9c83;
@@ -100,13 +95,6 @@ img {
 #sidebar .toc{
   display: block;
   padding-top: 20px;
-}
-
-body {
-  min-height: 100vh;
-  position: relative;
-  margin: 0;
-  padding-bottom: 200px;
 }
 
 #footer {
