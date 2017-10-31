@@ -60,7 +60,33 @@ publication de la Homepage.
 ### #Ia08
 * Un utilisateur ne peut pas faire de publication sans être loggé.
 
-[1]:https://guides.github.com/features/mastering-markdown/#GitHub-flavored-markdown
+### #Ia09
+* Lors de la sélection d'un post, celui ci se déplie pour afficher l'intégralité de son contenu.
+* En resélectionnant l'entête du post, celui ci se replie pour reformer une liste.
+
+![](/uploads/opened.png)
+![](/uploads/closed.png)
+
 ---
 ## Publication
-![](/uploads/Drawing.png)
+![](/uploads/post_2.png)
+
+### #Ib01
+* La page publication est accessible à l'url **[root/publication]**.
+
+### #Ib02
+* La publication est divisée en deux partie: la partie édition markdown, et la partie pré-visualisation qui permet de voir le rendu markdown au format html.
+
+### #Ib03
+* L'action ***[post]*** publie la publication en cours.
+
+### #Ib04
+* L'action ***[Titre]*** permet de donner un titre à la publication.
+
+### #Ib05
+* L'action ***[tag]*** permet de rajouter un tag à la publication.
+
+### #Ib06
+* La zone textarea permet de remplir le contenu de la publication.
+
+[1]:https://guides.github.com/features/mastering-markdown/#GitHub-flavored-markdown
