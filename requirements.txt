@@ -3,6 +3,9 @@ chardet==3.0.4
 configparser==3.5.0
 enum34==1.1.6
 flake8==3.4.1
+Flask==0.12.2
+Flask-Bootstrap==3.3.7.1
+Flask-FlatPages==0.6
 gunicorn==19.7.1
 Jinja2==2.9.6
 pew==0.1.27
