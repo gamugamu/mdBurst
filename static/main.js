@@ -1,16 +1,13 @@
 (function () {
 
+  ROOT_DIRECTORY_API_SERVICE = "http://127.0.0.1:8000/rest/0.0.2"
   'use strict';
 
   angular.module('mdBurst-api', ['ngSanitize'])
 
   .controller('mdBurst-api-controller', ['$scope','$log', '$http', '$sce',
     function($scope, $log, $http, $sce) {
-      //$scope.test()
-
       var converter = new showdown.Converter({tables: true, ghCompatibleHeaderId: true, simpleLineBreaks: true, emoji:true});
-      showdown.getOptions();
-      console.log("sddsdsd")
 
       var defaultOptions        = showdown.getOptions();
       $scope.main_input         = "";
