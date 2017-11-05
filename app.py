@@ -18,5 +18,5 @@ Triangle(app)
 
 @app.route('/')
 def hello_world():
-    html = render_template('base.html').decode( "utf-8" )
+    html = render_template('homepage.html').decode( "utf-8" )
     return html

@@ -6,8 +6,11 @@
 
   .controller('mdBurst-api-controller', ['$scope','$log', '$http', '$sce',
     function($scope, $log, $http, $sce) {
-      var converter             = new showdown.Converter({tables: true, ghCompatibleHeaderId: true, simpleLineBreaks: true, emoji:true});
+      //$scope.test()
+
+      var converter = new showdown.Converter({tables: true, ghCompatibleHeaderId: true, simpleLineBreaks: true, emoji:true});
       showdown.getOptions();
+      console.log("sddsdsd")
 
       var defaultOptions        = showdown.getOptions();
       $scope.main_input         = "";
@@ -24,6 +27,7 @@
           $scope.main_input_tohmtl = $sce.trustAsHtml(html);
       }, true);
 
+      homelist_test($http)
   }
   ]);
 

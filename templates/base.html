@@ -15,10 +15,6 @@
 {{super()}}
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-sanitize.js"></script>
-<script src="{{ url_for('static', filename='helper.js') }}"></script>
-<script src="{{ url_for('static', filename='main.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.6/showdown.min.js"></script>
-
 {% endblock %}
 
 {% block navbar %}
@@ -39,18 +35,6 @@ ng-controller="mdBurst-api-controller"
     <!-- header -->
     <h1 class="display-3">mdBurst</h1>
   </div>
-</div>
-
-<div class="container-fluid" ng-controller="mdBurst-api-controller"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
-            <div class="mkdown_input" class="row" ng-cloak>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                  <textarea class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" ng-keyup="$event.keyCode === 13 && convert_showdown(main_input)" ng-model="main_input"></textarea>
-                </div>
-
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
-                  <p ng-bind-html="main_input_tohmtl">{{main_input_tohmtl|angular}}</p>
-                </div>
-            </div>
 </div>
 
 {% endblock %}
