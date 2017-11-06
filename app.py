@@ -2,6 +2,7 @@
 
 from flask import Flask
 from flask import render_template
+from flask import make_response
 
 from flask_bootstrap import Bootstrap
 from flask_bower import Bower
@@ -18,5 +19,7 @@ Triangle(app)
 
 @app.route('/')
 def hello_world():
-    html = render_template('base.html').decode( "utf-8" )
-    return html
+    r = make_response(render_template('homepage.html').decode( "utf-8" ))
+    r.headers.add('Access-Control-Allow-Origin', '*')
+
+    return r
