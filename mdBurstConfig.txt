@@ -2,3 +2,6 @@
 url_DIRECTORY_API         = http://127.0.0.1:8000/rest/0.0.2/
 key_DIRECTORY_API         = d872eebd3967a9a00bdcb7235b491d87
 secret_key_DIRECTORY_API  = d872eebd3967a9a00bdcb7235b491d87
+login_DIRECTORY_API       = mdburst@gmail.com
+passw_DIRECTORY_API       = mdBurst90835
+MAIN_GROUP_MDBURST        = groupmdBurst

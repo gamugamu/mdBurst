@@ -1,5 +1,5 @@
+# coding: utf8
 import ConfigParser
-
 
 configParser = ConfigParser.RawConfigParser()
 configParser.read("mdBurstConfig.txt")

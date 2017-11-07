@@ -38,7 +38,7 @@
           });
       };
 
-      homelist($http)
+      graph($http)
   }
   ]);
 
