@@ -8,18 +8,16 @@ from flask_bootstrap import Bootstrap
 from flask_bower import Bower
 from flask_triangle import Triangle
 from services import FileUpload
-
+from services import DirectoryClient
 
 app = Flask(__name__)
 
 FileUpload.FileUpload(app)
+DirectoryClient.DirectoryClient(app)
 Bootstrap(app)
 Bower(app)
 Triangle(app)
 
 @app.route('/')
 def hello_world():
-    r = make_response(render_template('homepage.html').decode( "utf-8" ))
-    r.headers.add('Access-Control-Allow-Origin', '*')
-
-    return r
+    return make_response(render_template('homepage.html').decode( "utf-8" ))

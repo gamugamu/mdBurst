@@ -1,14 +1,10 @@
 (function () {
-
-  ROOT_DIRECTORY_API_SERVICE = "http://127.0.0.1:8000/rest/0.0.2"
+  ROOT_DIRECTORY_API_SERVICE = window.location.origin
   'use strict';
 
   angular.module('mdBurst-api', ['ngSanitize'])
   .controller('mdBurst-api-controller', ['$scope','$log', '$http', '$sce',
     function($scope, $log, $http, $sce) {
-      var converter = new showdown.Converter({tables: true, ghCompatibleHeaderId: true, simpleLineBreaks: true, emoji:true});
-
-
       var converter             = new showdown.Converter({tables: true, ghCompatibleHeaderId: true, simpleLineBreaks: true, emoji:true});
       $scope.main_input         = "";
       $scope.main_input_tohmtl  = "";
@@ -41,6 +37,8 @@
             console.log("error");
           });
       };
+
+      homelist($http)
   }
   ]);
 
