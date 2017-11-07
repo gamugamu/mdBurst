@@ -37,8 +37,6 @@
             console.log("error");
           });
       };
-
-      graph($http)
   }
   ]);
 

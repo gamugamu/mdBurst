@@ -13,11 +13,11 @@ from services import DirectoryClient
 app = Flask(__name__)
 
 FileUpload.FileUpload(app)
-DirectoryClient.DirectoryClient(app)
 Bootstrap(app)
 Bower(app)
 Triangle(app)
 
 @app.route('/')
 def hello_world():
+    print "graph", DirectoryClient.graph()
     return make_response(render_template('homepage.html').decode( "utf-8" ))
