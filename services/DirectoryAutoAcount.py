@@ -18,6 +18,14 @@ SECRET_KEY          = ConfigLoader.get("secret_key_DIRECTORY_API")
 def generateAPIKey():
     return encrypt(SECRET_KEY + "|" + datetime.now().strftime(Fa01_DATE_FORMAT), AKEY)
 
+def getToken():
+    headers_requestToken    = {'content-type': 'application/json', 'token-request' : generateAPIKey()}
+    # GET TOKEN
+    r       = requests.get(ROOT_URL + "asktoken", headers=headers_requestToken)
+    data    = json.loads(r.content)
+
+    return data["token"]["hash"]
+
 def create_MDBurstFolder_if_none():
     data = is_MDBurstFolder_exist()
 

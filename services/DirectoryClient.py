@@ -14,8 +14,8 @@ MD_BUSTMD_UID           = DAA.create_MDBurstFolder_if_none()
 def DirectoryClient(app):
     @app.route('/dc/graph')
     def graph():
-        token           = DAA.generateAPIKey()
-        headers_auth    = {'content-type': 'application/json', TOKEN_REQU_HEADER : token}
+        token           = DAA.getToken()
+        headers_auth    = {'content-type': 'application/json', TOKEN_HEADER : token}
         data            = {"file_id" : MD_BUSTMD_UID}
 
         r = requests.post(
