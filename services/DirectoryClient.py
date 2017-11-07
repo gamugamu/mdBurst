@@ -1,16 +1,12 @@
-import datetime
 from datetime import datetime, timedelta
-import base64
-import requests
-import json
-
 from Crypto import Random
 from Crypto.Cipher import AES
 from flask import request
 
-DIRECTORY_URL           = "http://127.0.0.1:8000/rest/0.0.2/"
-DIRECTORY_KEY           = 'd872eebd3967a9a00bdcb7235b491d87'
-DIRECTORY_SECRET_KEY    = 'd872eebd3967a9a00bdcb7235b491d87'
+import base64
+import requests
+import json
+import services.ConfigLoader as ConfigLoader
 
 Fa01_DATE_FORMAT        = "%Y-%m-%d_%H:%M:%S"
 TOKEN_REQU_HEADER       = "token-request"
@@ -19,7 +15,7 @@ TOKEN_HEADER            = "token"
 def DirectoryClient(app):
     @app.route('/dc/generateAPIKey')
     def generateAPIKey():
-        return encrypt(DIRECTORY_SECRET_KEY + "|" + datetime.now().strftime(Fa01_DATE_FORMAT), DIRECTORY_KEY)
+        return encrypt(ConfigLoader.get("secret_key_DIRECTORY_API") + "|" + datetime.now().strftime(Fa01_DATE_FORMAT), ConfigLoader.get("key_DIRECTORY_API"))
 
     @app.route('/dc/graph', methods=['POST'])
     def graph():
@@ -34,7 +30,7 @@ def DirectoryClient(app):
             }
 
         r = requests.post(
-            DIRECTORY_URL + "graph",
+            ConfigLoader.get("url_DIRECTORY_API") + 'graph',
             headers = headers_auth,
             data    = json.dumps(request.get_json())
             )
