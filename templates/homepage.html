@@ -23,6 +23,14 @@
                 </div>
 
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
+                  <a ng-href='#here' ng-click='go()' >click me</a>
+
+                  <ul>
+                  <li ng-repeat="post in graph">
+                      {{"{{ post }}"}}
+                  </li>
+                  </ul>
+
                   <p ng-bind-html="main_input_tohmtl">{{main_input_tohmtl|angular}}</p>
                 </div>
             </div>

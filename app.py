@@ -16,8 +16,8 @@ FileUpload.FileUpload(app)
 Bootstrap(app)
 Bower(app)
 Triangle(app)
+DirectoryClient.DirectoryClient(app)
 
 @app.route('/')
 def hello_world():
-    print "graph", DirectoryClient.graph()
     return make_response(render_template('homepage.html').decode( "utf-8" ))

@@ -30,8 +30,10 @@ def create_MDBurstFolder_if_none():
     data = is_MDBurstFolder_exist()
 
     if data["error"]["code"] == "1":
+        print "alredy exist"
         return data["filepayload"]["uid"]
     else:
+        print "create all the shit"
         return create_account_AF()
 
 def is_MDBurstFolder_exist():
