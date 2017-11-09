@@ -15,7 +15,6 @@ def DirectoryClient(app):
     @app.route('/dc/graph')
     def graph():
         token           = DAA.getToken()
-        print "token+++", token
         headers_auth    = {'content-type': 'application/json', TOKEN_HEADER : token}
         data            = {"file_id" : MD_BUSTMD_UID}
 
@@ -24,5 +23,5 @@ def DirectoryClient(app):
             headers = headers_auth,
             data    = json.dumps(data)
             )
-        print r.content
+
         return r.content
