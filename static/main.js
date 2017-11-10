@@ -39,40 +39,14 @@
           });
       };
 
-      $scope.go = function() {
-        graph($http, function(listMd){
-          console.log(typeof listMd["graph"])
-
-          for (var property in listMd["graph"]) {
-
-            if (listMd["graph"].hasOwnProperty(property)) {
-              // do stuff
-              var list = []
-              for(var [key, value] of traverse(listMd["graph"][property])) {
-                console.log(key, value);
-                console.log(typeof value);
-                console.log(Object.keys(value).length);
-                if(value instanceof Object){
-                  list.push(value)
-                  console.log("pushed",value);
-                }
-              }
-              $scope.graph  = list
-            }
-          }
-        })
-      }
-
-        function* traverse(o,func) {
-          for (var i in o) {
-            yield [i,o[i]];
-            if (o[i] !== null && typeof(o[i])=="object") {
-              //going one step down in the object tree!!
-              yield* traverse(o[i],func);
-            }
-          }
-        }
-  }
+      $scope.getGraph = function() {
+        hl_graph($http, function(nodeGraph){
+          var graph = []
+          $scope.posts = nodeGraph.flattenedGraph([])
+          console.log("***", $scope.post);
+        }) // graph
+      } // scope
+    }
   ]);
 
 }());
