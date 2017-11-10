@@ -86,6 +86,13 @@ img {
   margin-top: -20px;
 }
 
+/* cells */
+
+.mdcell{
+  height: 80px;
+  background-color: #eeeeee;
+}
+
 /* sidebar */
 #sidebar .toc{
   display: block;

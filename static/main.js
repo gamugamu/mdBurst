@@ -41,9 +41,10 @@
 
       $scope.getGraph = function() {
         hl_graph($http, function(nodeGraph){
-          var graph = []
-          $scope.posts = nodeGraph.flattenedGraph([])
-          console.log("***", $scope.post);
+          var graph = nodeGraph.flattenedGraph([])
+          graph.shift()
+          $scope.posts = graph
+
         }) // graph
       } // scope
     }
