@@ -19,6 +19,9 @@ class OAuthSignIn(object):
     def callback(self):
         pass
 
+    def retrieve_user_info(self):
+        pass
+
     def get_callback_url(self):
         return url_for('oauth_callback', provider=self.provider_name,
                        _external=True)
@@ -71,7 +74,8 @@ class FacebookSignIn(OAuthSignIn):
             me.get('email').split('@')[0],  # Facebook does not provide
                                             # username, so the email's user
                                             # is used instead
-            me.get('email')
+            me.get('email'),
+            None
         )
 
 
@@ -109,7 +113,8 @@ class TwitterSignIn(OAuthSignIn):
 
         me = oauth_session.get('account/verify_credentials.json').json()
 
-        social_id = 'twitter_' + str(me.get('id'))
-        username = me.get('screen_name')
+        social_id       = 'twitter_' + str(me.get('id'))
+        username        = me.get('name')
+        profil_image    = me.get('profile_image_url_https')
 
-        return social_id, username, None   # Twitter does not provide email
+        return social_id, username, None, profil_image   # Twitter does not provide email

@@ -23,5 +23,6 @@ def DirectoryClient(app):
             headers = headers_auth,
             data    = json.dumps(data)
             )
-
+        print "result ", r.content
+         
         return r.content

@@ -10,10 +10,11 @@ import services.ConfigLoader as ConfigLoader
 
 class User(UserMixin):
     def __init__(self, redis_key, redis_values):
-        self.social_id  = redis_key
-        self.name       = redis_values.get("name")
-        self.email      = redis_values.get("email")
-        self.id         = 0
+        self.social_id      = redis_key
+        self.name           = redis_values.get("name")
+        self.email          = redis_values.get("email")
+        self.id             = 0
+        self.image_profil   = redis_values.get("image_profil")
 
     def get_id(self):
         return self.social_id
@@ -62,15 +63,14 @@ def Login(app):
             return redirect(url_for('index'))
 
         oauth = OAuthSignIn.get_provider(provider)
-        social_id, username, email = oauth.callback()
+        social_id, username, email, image_profil = oauth.callback()
 
         if social_id is None:
             flash('Authentication failed.')
             return redirect(url_for('index'))
 
-        print "social ID", social_id
         user_redis  =  Dbb.collection_for_Key("dumb_user", social_id)
-        user_data   = {"name": username, "email": email}
+        user_data   = {"name": username, "email": email, "image_profil": image_profil}
 
         if not user_redis:
             user = User(social_id, user_data)
@@ -79,4 +79,5 @@ def Login(app):
             user = User(social_id, user_redis)
 
         login_user(user, True)
+
         return redirect(url_for('index'))

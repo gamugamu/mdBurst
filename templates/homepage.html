@@ -19,24 +19,24 @@
 <div class="container-fluid"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
             <div class="mkdown_input" class="row" ng-cloak>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-
-                      <h1>OAuth Demo</h1>
-                      {% for message in get_flashed_messages() %}
-                          <p><b>Error</b>: {{ message }}</p>
-                      {% endfor %}
-                      {% if current_user.is_authenticated %}
-                          <h2>Hi, {{ current_user.nickname }}!</h2>
-                          <p><a href="{{ url_for('logout') }}">Logout</a></p>
-                      {% else %}
-                          <h2>I don't know you!</h2>
-                          <p><a href="{{ url_for('oauth_authorize', provider='facebook') }}">Login with Facebook</a></p>
-                          <p><a href="{{ url_for('oauth_authorize', provider='twitter') }}">Login with Twitter</a></p>
-                      {% endif %}
-
                   <textarea class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" ng-keyup="$event.keyCode === 13 && convert_showdown(main_input)" ng-model="main_input"></textarea>
                 </div>
 
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
+                  <h1>OAuth Demo</h1>
+                  {% for message in get_flashed_messages() %}
+                      <p><b>Error</b>: {{ message }}</p>
+                  {% endfor %}
+                  {% if current_user.is_authenticated %}
+                      <h2>Hi, {{ current_user.name }}!</h2>
+                      <img src={{ current_user.image_profil }} alt="profil picture">
+                      <p><a href="{{ url_for('logout') }}">Logout</a></p>
+                  {% else %}
+                      <h2>I don't know you!</h2>
+                      <p><a href="{{ url_for('oauth_authorize', provider='facebook') }}">Login with Facebook</a></p>
+                      <p><a href="{{ url_for('oauth_authorize', provider='twitter') }}">Login with Twitter</a></p>
+                  {% endif %}
+                  
                   <a ng-href='#here' ng-click='getGraph()' >click me</a>
 
                     <div id="accordion" class="accordion">
