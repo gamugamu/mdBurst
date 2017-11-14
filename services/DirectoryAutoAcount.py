@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 import requests
 import base64
 import json
+import sys
 
 Fa01_DATE_FORMAT    = "%Y-%m-%d_%H:%M:%S"
 ROOT_URL            = ConfigLoader.get("url_DIRECTORY_API")
@@ -27,10 +28,15 @@ def getToken():
     return data["token"]["hash"]
 
 def create_MDBurstFolder_if_none():
-    data = is_MDBurstFolder_exist()
+    try:
+        data = is_MDBurstFolder_exist()
+    except Exception as e:
+        print "Error, Couldn't create MDBustFolder. This site is useless in this state"
+        sys.exit("Error configuration server")
+        return None;
 
     if data["error"]["code"] == "1":
-        print "alredy exist"
+        print "already exist", data
         return data["filepayload"]["uid"]
     else:
         print "create all the shit"

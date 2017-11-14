@@ -1,5 +1,7 @@
 [Config_url]
-url_DIRECTORY_API         = https://directory-api.herokuapp.com/rest/0.0.2/
+url_DIRECTORY_API         = http://0.0.0.0:8000/rest/0.0.2/
+#url_DIRECTORY_API        = https://directory-api.herokuapp.com/rest/0.0.2/
+redis_local_url_port      = 6380
 key_DIRECTORY_API         = d872eebd3967a9a00bdcb7235b491d87
 secret_key_DIRECTORY_API  = d872eebd3967a9a00bdcb7235b491d87
 login_DIRECTORY_API       = mdburst@gmail.com
