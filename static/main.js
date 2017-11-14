@@ -47,6 +47,17 @@
 
         }) // graph
       } // scope
+
+      $scope.post =  function(title){
+        console.log("PST++++", title);
+        $http({
+          method:   'POST',
+          url:      ROOT_DIRECTORY_API_SERVICE + '/dc/post',
+          data: JSON.stringify({"title" : title})
+        }).then(function(response) {
+          console.log("post created");
+        }); // http
+      }// func
     }
   ]);
 

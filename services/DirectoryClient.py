@@ -23,6 +23,22 @@ def DirectoryClient(app):
             headers = headers_auth,
             data    = json.dumps(data)
             )
+
+        return r.content
+
+    @app.route('/dc/post', methods=["POST"])
+    def post():
+        post =  request.get_json()
+
+        token           = DAA.getToken()
+        headers_auth    = {'content-type': 'application/json', TOKEN_HEADER : token}
+        payload         = {"filetype" : {"parentId" : MD_BUSTMD_UID, "name" : post["title"], "type": 2}}
+
+        r = requests.post(
+            ConfigLoader.get("url_DIRECTORY_API") + 'createfile',
+            headers = headers_auth,
+            data    = json.dumps(payload)
+            )
         print "result ", r.content
-         
+
         return r.content

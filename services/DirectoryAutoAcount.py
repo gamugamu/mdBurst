@@ -27,6 +27,9 @@ def getToken():
 
     return data["token"]["hash"]
 
+def get_MdBurstGroupId():
+    return data["token"]["hash"]
+
 def create_MDBurstFolder_if_none():
     try:
         data = is_MDBurstFolder_exist()
@@ -39,7 +42,6 @@ def create_MDBurstFolder_if_none():
         print "already exist", data
         return data["filepayload"]["uid"]
     else:
-        print "create all the shit"
         return create_account_AF()
 
 def is_MDBurstFolder_exist():
@@ -97,6 +99,7 @@ def create_MDBurstFolder_AF(token_session):
     r           = requests.post(ROOT_URL + "createfile", headers=headers_session_token, data=json.dumps(data))
     data        = json.loads(r.content)
     code_error  = data["error"]["code"]
+    print "data ", data["filepayload"]["uid"]
 
     if code_error == "1":
         print "data OK", data
