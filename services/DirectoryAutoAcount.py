@@ -39,7 +39,6 @@ def create_MDBurstFolder_if_none():
         return None;
 
     if data["error"]["code"] == "1":
-        print "already exist", data
         return data["filepayload"]["uid"]
     else:
         return create_account_AF()
@@ -75,7 +74,7 @@ def create_account_AF():
         print "account OK++"
         return login_to_directory_AF(crypted_password, headers_token, email)
     else:
-        print "ERROR SERVER"
+        print "ERROR SERVER 0"
         return "NOK"
 
 def login_to_directory_AF(crypted_password, headers_token, email):
@@ -88,24 +87,29 @@ def login_to_directory_AF(crypted_password, headers_token, email):
         token_session = data["token"]["hash"]
         return create_MDBurstFolder_AF(token_session)
     else:
-        print "ERROR SERVER"
+        print "ERROR SERVER 1"
         return "NOK"
 
 def create_MDBurstFolder_AF(token_session):
     headers_session_token   = {'content-type': 'application/json', 'token' : token_session}
     group_name              = ConfigLoader.get("MAIN_GROUP_MDBURST")
 
-    data        = {"filetype" : {"type" : 1, "name" : group_name, "parentId" : ""}}
+    data        = {"payload" : {
+        "type"      : 1,
+        "name"      : group_name,
+        "parentId"  : "",
+        "title"     : "mdBurst",
+        "payload"   : ""}}
     r           = requests.post(ROOT_URL + "createfile", headers=headers_session_token, data=json.dumps(data))
     data        = json.loads(r.content)
     code_error  = data["error"]["code"]
-    print "data ", data["filepayload"]["uid"]
 
     if code_error == "1":
         print "data OK", data
         return "OK"
     else:
-        print "ERROR SERVER"
+        print "ERROR SERVER 2"
+        print data
         return "NOK"
 
 # AES Encryption

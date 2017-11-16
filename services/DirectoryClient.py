@@ -32,13 +32,38 @@ def DirectoryClient(app):
 
         token           = DAA.getToken()
         headers_auth    = {'content-type': 'application/json', TOKEN_HEADER : token}
-        payload         = {"filetype" : {"parentId" : MD_BUSTMD_UID, "name" : post["title"], "type": 2}}
+        payload         = {"payload" : {
+            "parentId"  : MD_BUSTMD_UID,
+            "name"      : post["title"],
+            "type"      : 2,
+            "owner"     : "unknow",
+            "title"     : post["title"],
+            "payload"   : post["payload"]
+        }}
 
         r = requests.post(
             ConfigLoader.get("url_DIRECTORY_API") + 'createfile',
             headers = headers_auth,
             data    = json.dumps(payload)
             )
-        print "result ", r.content
 
         return r.content
+
+    @app.route('/dc/getPayload', methods=["POST"])
+    def get_payload():
+        post =  request.get_json()
+
+        token           = DAA.getToken()
+        headers_auth    = {'content-type': 'application/json', TOKEN_HEADER : token}
+        filesID         = {
+            "filesid" : post["filesid"]}
+
+        r = requests.post(
+            ConfigLoader.get("url_DIRECTORY_API") + 'filespayload',
+            headers = headers_auth,
+            data    = json.dumps(filesID)
+            )
+        #TODO gestion erreur
+        data = json.loads(r.content)
+
+        return json.dumps(data["filespayload"])

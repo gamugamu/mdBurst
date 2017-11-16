@@ -44,20 +44,34 @@
           var graph = nodeGraph.flattenedGraph([])
           graph.shift()
           $scope.posts = graph
-
         }) // graph
       } // scope
 
-      $scope.post =  function(title){
-        console.log("PST++++", title);
+      $scope.postMD =  function(title, payload){
+        console.log("payload", $sce.getTrustedHtml(payload));
+
         $http({
           method:   'POST',
           url:      ROOT_DIRECTORY_API_SERVICE + '/dc/post',
-          data: JSON.stringify({"title" : title})
+          data: JSON.stringify({
+            "title"   : title,
+            "payload" : $sce.getTrustedHtml(payload)})
         }).then(function(response) {
           console.log("post created");
+          console.log(response)
         }); // http
       }// func
+
+      $scope.getPayloadMD = function(file_id){
+        $http({
+          method:   'POST',
+          url:      ROOT_DIRECTORY_API_SERVICE + '/dc/getPayload',
+          data: JSON.stringify({"filesid" : [file_id]})
+        }).then(function(response) {
+          hl_feed_graph(response.data[0], $scope.posts);
+        }); // http
+      }// func
+
     }
   ]);
 

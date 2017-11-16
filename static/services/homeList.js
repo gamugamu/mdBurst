@@ -16,8 +16,6 @@ class Node {
     queue.push(this)
     for (var i = 0; i < this.childs.length; i++) {
       var child = this.childs[i];
-      console.log(child);
-      console.log(child.parent.name)
       child.flattenedGraph(queue);
     }
     return queue
@@ -32,6 +30,21 @@ function hl_graph($http, callback) {
     callback(make_graph(response.data))
   });
 };
+
+function hl_feed_graph(payload, graph){
+  for (var node in graph) {
+    if (payload.uid === graph[node].uid){
+        graph[node].payload = decodeHtml(payload.payload)
+        console.log("+++++", decodeHtml( graph[node].payload ) );
+    }
+  } // for
+}
+
+function decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+}
 
 function make_graph(listMd){
   for (var property in listMd["graph"]) {
