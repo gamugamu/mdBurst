@@ -35,7 +35,6 @@ function hl_feed_graph(payload, graph){
   for (var node in graph) {
     if (payload.uid === graph[node].uid){
         graph[node].payload = decodeHtml(payload.payload)
-        console.log("+++++", decodeHtml( graph[node].payload ) );
     }
   } // for
 }

@@ -26,4 +26,8 @@ Login(app)
 
 @app.route('/')
 def index():
-    return make_response(render_template('homepage.html').decode( "utf-8" ))
+    return make_response(render_template('index.html').encode( "utf-8" ))
+
+@app.route('/post')
+def post_mkdown():
+    return make_response(render_template('post.html', url_action = url_for("index")).encode( "utf-8" ))

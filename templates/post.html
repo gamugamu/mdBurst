@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+{{super()}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.6/showdown.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/pbkdf2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/mode-cfb.js"></script>
+
+<script src="{{ url_for('static', filename='helper.js') }}"></script>
+<script src="{{ url_for('static', filename='services/homeList.js') }}"></script>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+{{super()}}
+          <div class="mkdown_input"  ng-cloak>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <input class="mkdown_input form-control" ng-model="post_title" placeholder="Title">
+              <textarea class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" ng-keyup="$event.keyCode === 13 && convert_showdown(main_input)" ng-model="main_input"></textarea>
+              <button type="button" class="btn btn-primary" ng-click='postMD(post_title, main_input)'>Post</button>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" >
+              <p ng-bind-html="main_input_tohmtl">{{main_input_tohmtl|angular}}</p>
+            </div>
+          </div>
+{% endblock %}

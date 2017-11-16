@@ -8,7 +8,11 @@
       var converter             = new showdown.Converter({tables: true, ghCompatibleHeaderId: true, simpleLineBreaks: true, emoji:true});
       $scope.main_input         = "";
       $scope.main_input_tohmtl  = "";
-      $scope.graph              = []
+      $scope.graph              = [];
+
+      $(document).ready(function(){
+        $scope.getGraph()
+      });
 
       $scope.convert_showdown = function(text) {
           text        = parseMdForToc(text)

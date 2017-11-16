@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+{{super()}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.6/showdown.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/pbkdf2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/mode-cfb.js"></script>
+
+<script src="{{ url_for('static', filename='helper.js') }}"></script>
+<script src="{{ url_for('static', filename='services/homeList.js') }}"></script>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+{{super()}}
+<div class="container-fluid"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
+      <div class="row" ng-cloak>
+              <div id="accordion" class="accordion">
+                    <div ng-repeat="post in posts">
+                      <div
+                        ng-click    = 'getPayloadMD(post.uid)'
+                        class       = "border-dark mdcell"
+                        data-toggle = "collapse"
+                        data-target = {% raw %} "{{ '#collapse-' + $index }}" {% endraw %}
+                        data-parent = "#accordion">{{"{{ post.name }}"}}
+                      </div>
+                      <div id={% raw %} "{{ 'collapse-' + $index }}" {% endraw %} class="collapse">
+                        <p>{{"{{ post.payload }}"}}</p>
+                      </div>
+                    </div> <!-- endfor -->
+              </div> <!-- accordion -->
+      </div> <!-- mkdown_input -->
+</div> <!-- container -->
+{% endblock %}

@@ -1,3 +1,5 @@
+[ng\:cloak],[ng-cloak],.ng-cloak{display:none !important}
+
 /* Body */
 body {
   min-height: 100vh;
@@ -80,10 +82,9 @@ img {
 }
 
 /* header */
-.jumbotron{
+.header{
   background-color: #2ca243;
   color: white;
-  margin-top: -20px;
 }
 
 /* cells */
@@ -91,6 +92,7 @@ img {
 .mdcell{
   height: 80px;
   background-color: #eeeeee;
+  border-style: ridge;
 }
 
 /* sidebar */
