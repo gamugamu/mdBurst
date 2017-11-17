@@ -83,7 +83,7 @@ img {
 
 /* header */
 .header{
-  background-color: #2ca243;
+  background-color: #dddddd;
   color: white;
 }
 
@@ -92,7 +92,14 @@ img {
 .mdcell{
   height: 80px;
   background-color: #eeeeee;
-  border-style: ridge;
+  border-bottom-style: solid;
+
+  border-width: 0.1px;
+}
+
+.black {
+  background-color: DimGray;
+  color: white;
 }
 
 /* sidebar */
