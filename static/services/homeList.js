@@ -39,6 +39,15 @@ function hl_feed_graph(payload, graph){
   } // for
 }
 
+function hl_history($http, callback){
+  $http({
+    method:   'POST',
+    url:      ROOT_DIRECTORY_API_SERVICE + '/dc/history'
+  }).then(function(response) {
+    callback(make_graph(response.data))
+  });
+}
+
 function decodeHtml(html) {
     var txt = document.createElement("textarea");
     txt.innerHTML = html;

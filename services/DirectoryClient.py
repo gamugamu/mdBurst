@@ -55,8 +55,7 @@ def DirectoryClient(app):
 
         token           = DAA.getToken()
         headers_auth    = {'content-type': 'application/json', TOKEN_HEADER : token}
-        filesID         = {
-            "filesid" : post["filesid"]}
+        filesID         = {"filesid" : post["filesid"]}
 
         r = requests.post(
             ConfigLoader.get("url_DIRECTORY_API") + 'filespayload',
@@ -67,3 +66,21 @@ def DirectoryClient(app):
         data = json.loads(r.content)
 
         return json.dumps(data["filespayload"])
+
+
+    @app.route('/dc/history', methods=["POST"])
+    def get_history():
+        post =  request.get_json()
+
+        token           = DAA.getToken()
+        headers_auth    = {'content-type': 'application/json', TOKEN_HEADER : token}
+
+        r = requests.post(
+            ConfigLoader.get("url_DIRECTORY_API") + 'history',
+            headers = headers_auth,
+            data    = json.dumps({"option-filter" : {"by_group" : "groupmdBurst"}})
+            )
+
+        data = json.loads(r.content)
+        print "GET DATA ", data
+        return "done***"

@@ -12,6 +12,9 @@
 
       $(document).ready(function(){
         $scope.getGraph()
+        hl_history($http, function(nodeGraph){
+          console.log("GET GRAPH***");
+        }) // graph
       });
 
       $scope.convert_showdown = function(text) {

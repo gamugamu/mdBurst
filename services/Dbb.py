@@ -37,6 +37,7 @@ def store_collection(typeKey="", key="", storeDict=""):
         key = generated_key(typeKey, key)
 
     r.hmset(key, storeDict)
+    return key
 
 def collection_for_Pattern(pattern=""):
     value = value_for_key(key=pattern)
