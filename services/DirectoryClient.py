@@ -7,6 +7,9 @@ from flask import request
 
 import json
 
+import time
+
+
 TOKEN_REQU_HEADER       = "token-request"
 TOKEN_HEADER            = "token"
 MD_BUSTMD_UID           = DAA.create_MDBurstFolder_if_none()
@@ -52,7 +55,6 @@ def DirectoryClient(app):
     @app.route('/dc/getPayload', methods=["POST"])
     def get_payload():
         post =  request.get_json()
-
         token           = DAA.getToken()
         headers_auth    = {'content-type': 'application/json', TOKEN_HEADER : token}
         filesID         = {"filesid" : post["filesid"]}
@@ -64,7 +66,7 @@ def DirectoryClient(app):
             )
         #TODO gestion erreur
         data = json.loads(r.content)
-
+        print "DATA", r.content
         return json.dumps(data["filespayload"])
 
 
@@ -78,9 +80,10 @@ def DirectoryClient(app):
         r = requests.post(
             ConfigLoader.get("url_DIRECTORY_API") + 'history',
             headers = headers_auth,
-            data    = json.dumps({"option-filter" : {"by_group" : "groupmdBurst"}})
-            )
+            data    = json.dumps({"option-filter" : {
+                "group_name" : "groupmdBurst",
+                "file_header" : True
+                }}))
 
         data = json.loads(r.content)
-        print "GET DATA ", data
-        return "done***"
+        return json.dumps(data["history"])

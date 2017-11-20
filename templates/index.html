@@ -15,19 +15,28 @@
 
 {% block content %}
 {{super()}}
+
 <div class="container-fluid"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
       <div class="row" ng-cloak>
               <div id="accordion" class="accordion">
+
                     <div ng-repeat="post in posts">
                       <div
-                        ng-click    = 'getPayloadMD(post.uid)'
+                        ng-click    = "getPayloadMD(post.uid, 'collapse-' + $index)"
                         class       = "border-dark mdcell"
                         data-toggle = "collapse"
                         data-target = {% raw %} "{{ '#collapse-' + $index }}" {% endraw %}
-                        data-parent = "#accordion">{{"{{ post.name }}"}}
+                        data-parent = "#accordion">
+                              {{ "{{ post.name }}" }}
+                        </br> {{ "{{ post.date }}" }}
+                        </br> {{ "{{ post.uid }}" }}
+                        </br> {{ "{{ post.owner }}" }}
+                        <span ng-show="getPayloadMD_tag == 'collapse-' + $index">
+                            <i class="glyphicon glyphicon-refresh spinning"></i>
+                        </span>
                       </div>
                       <div id={% raw %} "{{ 'collapse-' + $index }}" {% endraw %} class="collapse">
-                        <p>{{"{{ post.payload }}"}}</p>
+                        <p>{{"{{ post.payload }}"}} {{"{{getPayloadMD_tag}}"}} {{"{{post.uid}}"}} {{"{{getPayloadMD_tag == post.uid}}"}}</p>
                       </div>
                     </div> <!-- endfor -->
               </div> <!-- accordion -->

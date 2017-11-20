@@ -44,7 +44,7 @@ function hl_history($http, callback){
     method:   'POST',
     url:      ROOT_DIRECTORY_API_SERVICE + '/dc/history'
   }).then(function(response) {
-    callback(make_graph(response.data))
+    callback(response.data)
   });
 }
 

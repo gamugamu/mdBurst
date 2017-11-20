@@ -11,9 +11,9 @@
       $scope.graph              = [];
 
       $(document).ready(function(){
-        $scope.getGraph()
-        hl_history($http, function(nodeGraph){
-          console.log("GET GRAPH***");
+        hl_history($http, function(history_posts){
+          console.log("GET history ***", history_posts);
+          $scope.posts = history_posts
         }) // graph
       });
 
@@ -46,14 +46,6 @@
           });
       };
 
-      $scope.getGraph = function() {
-        hl_graph($http, function(nodeGraph){
-          var graph = nodeGraph.flattenedGraph([])
-          graph.shift()
-          $scope.posts = graph
-        }) // graph
-      } // scope
-
       $scope.postMD =  function(title, payload){
         console.log("payload", $sce.getTrustedHtml(payload));
 
@@ -69,16 +61,34 @@
         }); // http
       }// func
 
-      $scope.getPayloadMD = function(file_id){
-        $http({
-          method:   'POST',
-          url:      ROOT_DIRECTORY_API_SERVICE + '/dc/getPayload',
-          data: JSON.stringify({"filesid" : [file_id]})
-        }).then(function(response) {
-          hl_feed_graph(response.data[0], $scope.posts);
-        }); // http
+      $scope.getPayloadMD = function(file_id, tag){
+        $scope.getPayloadMD_tag = 0
+        if(!$('#'+tag).hasClass('in')){
+          timerId = setTimeout(function() {
+            function display_wait(tag){
+              $scope.getPayloadMD_tag = tag
+              $scope.$apply()
+              console.log("tag ", tag, $scope, $scope.getPayloadMD_tag);
+            };
+            display_wait(tag)
+          }, 1000);
+
+          $http({
+            method:   'POST',
+            url:      ROOT_DIRECTORY_API_SERVICE + '/dc/getPayload',
+            data: JSON.stringify({"filesid" : [file_id]})
+          }).then(function(response) {
+            console.log("done");
+            hl_feed_graph(response.data[0], $scope.posts);
+            $scope.getPayloadMD_tag = 0
+            clearTimeout(timerId);
+          }); // http
+        }
       }// func
 
+      function display_wait(tag){
+        $scope.getPayloadMD_tag = tag
+      }
     }
   ]);
 
