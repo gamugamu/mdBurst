@@ -3,6 +3,6 @@ function hl_history($http, callback){
     method:   'POST',
     url:      ROOT_DIRECTORY_API_SERVICE + '/dc/history'
   }).then(function(response) {
-    callback(response.data)
+    callback(response.data["history"], response.data["iterator"])
   });
 }

@@ -12,18 +12,17 @@
 
       // appel la liste des dernier posts
       $(document).ready(function(){
-        hl_history($http, function(history_posts){
-          console.log("GET history ***", history_posts);
+        hl_history($http, function(history_posts, iterator){
           $scope.posts = history_posts
+          console.log("iterator-->", iterator);
         }) // graph
       });
 
       // récupère le détail du post
       $scope.getPayloadMD = function(file_id, tag, idx){
         $scope.getPayloadMD_tag = 0
-        console.log("res", $scope.posts[idx].payload, idx);
+
         if(!$('#'+tag).hasClass('in') && $scope.posts[idx].payload == ""){
-          console.log("CALL WS")
           timerId = setTimeout(function() {
             function display_wait(tag){
               $scope.getPayloadMD_tag = tag

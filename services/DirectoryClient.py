@@ -80,9 +80,12 @@ def DirectoryClient(app):
             ConfigLoader.get("url_DIRECTORY_API") + 'history',
             headers = headers_auth,
             data    = json.dumps({"option-filter" : {
-                "group_name" : "groupmdBurst",
-                "file_header" : True
+                "group_name"        : "groupmdBurst",
+                "file_header"       : True,
+                "current_page"      : 0,
+                "total_per_page"    : 5
                 }}))
 
         data = json.loads(r.content)
-        return json.dumps(data["history"])
+        print "RESULT ", data
+        return json.dumps(data)
