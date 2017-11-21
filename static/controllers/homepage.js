@@ -26,19 +26,22 @@
             function display_wait(tag){
               $scope.getPayloadMD_tag = tag
               $scope.$apply()
-              console.log("tag ", tag, $scope, $scope.getPayloadMD_tag);
             };
             display_wait(tag)
           }, 1000);
 
+          // call API
           $http({
             method:   'POST',
             url:      ROOT_DIRECTORY_API_SERVICE + '/dc/getPayload',
             data: JSON.stringify({"filesid" : [file_id]})
           }).then(function(response) {
-            console.log("done");
-            hl_feed_graph(response.data[0], $scope.posts);
-            $scope.getPayloadMD_tag = 0
+            hl_feed_graph(response.data[0], $scope.posts,
+              function(post) {
+                console.log("callbacked", post);
+              }
+            );
+            $scope.getPayloadMD_tag = 0 // flag :(
             clearTimeout(timerId);
           }); // http
         }
