@@ -66,7 +66,6 @@ def DirectoryClient(app):
             )
         #TODO gestion erreur
         data = json.loads(r.content)
-        print "DATA", r.content
         return json.dumps(data["filespayload"])
 
 

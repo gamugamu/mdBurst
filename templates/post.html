@@ -8,9 +8,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/pbkdf2.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/mode-cfb.js"></script>
 
-<script src="{{ url_for('static', filename='helper.js') }}"></script>
-<script src="{{ url_for('static', filename='services/homeList.js') }}"></script>
-<script src="{{ url_for('static', filename='main.js') }}"></script>
+<script src="{{ url_for('static', filename='helpers/helper.js') }}"></script>
+<script src="{{ url_for('static', filename='controllers/post.js') }}"></script>
+{% endblock %}
+
+{% block body_attribs %}
+ng-controller="mdBurst-api-post"
 {% endblock %}
 
 {% block content %}

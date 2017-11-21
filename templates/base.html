@@ -10,7 +10,7 @@
 
 {% block styles %}
 {{super()}}
-<link href="{{ url_for('static', filename='mdburst.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/mdburst.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block scripts %}
@@ -51,11 +51,6 @@
   </div>
 </div>
 {% endblock %}
-
-{% block body_attribs %}
-ng-controller="mdBurst-api-controller"
-{% endblock %}
-
 
 {% block content %}
 {% endblock %}
