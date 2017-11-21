@@ -54,7 +54,7 @@ def DirectoryClient(app):
 
     @app.route('/dc/getPayload', methods=["POST"])
     def get_payload():
-        post =  request.get_json()
+        post            =  request.get_json()
         token           = DAA.getToken()
         headers_auth    = {'content-type': 'application/json', TOKEN_HEADER : token}
         filesID         = {"filesid" : post["filesid"]}
@@ -71,8 +71,7 @@ def DirectoryClient(app):
 
     @app.route('/dc/history', methods=["POST"])
     def get_history():
-        post =  request.get_json()
-
+        post            =  request.get_json()
         token           = DAA.getToken()
         headers_auth    = {'content-type': 'application/json', TOKEN_HEADER : token}
 
@@ -82,10 +81,9 @@ def DirectoryClient(app):
             data    = json.dumps({"option-filter" : {
                 "group_name"        : "groupmdBurst",
                 "file_header"       : True,
-                "current_page"      : 0,
+                "current_page"      : post["current_page"],
                 "total_per_page"    : 5
                 }}))
 
         data = json.loads(r.content)
-        print "RESULT ", data
         return json.dumps(data)
