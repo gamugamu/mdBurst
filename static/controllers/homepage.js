@@ -19,9 +19,11 @@
       });
 
       // récupère le détail du post
-      $scope.getPayloadMD = function(file_id, tag){
+      $scope.getPayloadMD = function(file_id, tag, idx){
         $scope.getPayloadMD_tag = 0
-        if(!$('#'+tag).hasClass('in')){
+        console.log("res", $scope.posts[idx].payload, idx);
+        if(!$('#'+tag).hasClass('in') && $scope.posts[idx].payload == ""){
+          console.log("CALL WS")
           timerId = setTimeout(function() {
             function display_wait(tag){
               $scope.getPayloadMD_tag = tag
@@ -37,8 +39,8 @@
             data: JSON.stringify({"filesid" : [file_id]})
           }).then(function(response) {
             hl_feed_graph(response.data[0], $scope.posts,
-              function(post) {
-                console.log("callbacked", post);
+              function(index) {
+                $scope.posts[index].payload = cv_convert_showdown($scope.posts[index].payload)
               }
             );
             $scope.getPayloadMD_tag = 0 // flag :(

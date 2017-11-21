@@ -22,14 +22,13 @@ ng-controller="mdBurst-api-controller"
 
 {% block content %}
 {{super()}}
-
 <div class="container-fluid"> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
       <div class="row" ng-cloak>
               <div id="accordion" class="accordion">
 
                     <div ng-repeat="post in posts">
                       <div
-                        ng-click    = "getPayloadMD(post.uid, 'collapse-' + $index)"
+                        ng-click    = "getPayloadMD(post.uid, 'collapse-' + $index, $index)"
                         class       = "border-dark mdcell"
                         data-toggle = "collapse"
                         data-target = {% raw %} "{{ '#collapse-' + $index }}" {% endraw %}
@@ -43,7 +42,7 @@ ng-controller="mdBurst-api-controller"
                         </span>
                       </div>
                       <div id={% raw %} "{{ 'collapse-' + $index }}" {% endraw %} class="collapse">
-                        <p>{{"{{ post.payload }}"}} {{"{{getPayloadMD_tag}}"}} {{"{{post.uid}}"}} {{"{{getPayloadMD_tag == post.uid}}"}}</p>
+                        <div ng-bind-html="post.payload"> </div>
                       </div>
                     </div> <!-- endfor -->
               </div> <!-- accordion -->
