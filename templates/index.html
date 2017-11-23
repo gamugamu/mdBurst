@@ -25,7 +25,6 @@ ng-controller="mdBurst-api-controller"
 <div class="container-fluid" ng-cloak> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
       <div class="row">
               <div id="accordion" class="accordion">
-
                     <div ng-repeat="post in posts">
                       <div
                         ng-click    = "getPayloadMD(post.uid, 'collapse-' + $index, $index)"
@@ -33,10 +32,18 @@ ng-controller="mdBurst-api-controller"
                         data-toggle = "collapse"
                         data-target = {% raw %} "{{ '#collapse-' + $index }}" {% endraw %}
                         data-parent = "#accordion">
+                          <h3>
                               {{ "{{ post.name }}" }}
-                        </br> {{ "{{ post.date }}" }}
-                        </br> {{ "{{ post.uid }}" }}
-                        </br> {{ "{{ post.owner }}" }}
+                          </h3>
+                          <div class="row">
+                            <div class="col-xs-6">
+                              {{ "{{ post.uid }}" }}
+                            </div>
+                            <div class="col-xs-6">
+                              {{ "{{ post.date }}" }}
+                            </div>
+                          </div>
+                          <h6> {{ "{{ post.owner }}" }} </h6>
                         <span ng-show="getPayloadMD_tag == 'collapse-' + $index">
                             <i class="glyphicon glyphicon-refresh spinning"></i>
                         </span>

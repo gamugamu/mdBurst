@@ -83,23 +83,31 @@ img {
 
 /* header */
 .header{
-  background-color: #dddddd;
+  background-color: #059994;
   color: white;
 }
 
 /* cells */
 
 .mdcell{
-  height: 80px;
-  background-color: #eeeeee;
+  background-color: white;
   border-bottom-style: solid;
-
+  margin-left: 20px;
   border-width: 0.1px;
 }
 
-.black {
-  background-color: DimGray;
+.btn_post {
+  background-color: orange;
   color: white;
+}
+
+a {
+    color: white;
+}
+
+#login{
+  align:right;
+  text-align: right;
 }
 
 /* sidebar */

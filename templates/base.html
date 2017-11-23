@@ -30,10 +30,10 @@
           {% if url_action is defined %}
             <a class="btn btn-secondary black" href="{{url_action}}">Back</a>
           {% else %}
-            <a class="btn btn-secondary black" href="{{url_for('post_mkdown')}}">Créer document</a>
+            <a class="btn btn-secondary btn_post" href="{{url_for('post_mkdown')}}">Créer document</a>
           {% endif %}
         </div>
-        <div class="col-xs-6 col-md-6 col-lg-6 col-sm-6">
+        <div class="col-xs-6 col-md-6 col-lg-6 col-sm-6" id=login>
           {% for message in get_flashed_messages() %}
               <p><b>Error</b>: {{ message }}</p>
           {% endfor %}
