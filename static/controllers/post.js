@@ -44,9 +44,14 @@
         }).then(function(response) {
           console.log("post excreated");
           console.log(response)
+          // redirection homePage. le post doit être en haut de liste.
+          $scope.navigateTo()
         }); // http
       }// func
 
+      $scope.navigateTo = function(uri = ""){
+        window.location.replace(window.location.origin + uri);
+      }
     }
   ]);
 

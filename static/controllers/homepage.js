@@ -9,7 +9,8 @@
       $scope.main_input         = "";
       $scope.main_input_tohmtl  = "";
       $scope.graph              = [];
-      $scope.current_page       = 1; // permet de connaitre la page en cours
+      $scope.current_page       = 0; // permet de connaitre la page en cours
+      $scope.current_location   = "";
 
       $scope.$history = function($http, current_page){
         hl_history($http, current_page, function(history_posts, iterator){
@@ -18,13 +19,13 @@
           console.log("refresh", history_posts, iterator);
         })
       };
-/*
+
       $(window).load(function() {
         console.log("window");
+        $scope.current_location = $location.path();
         $scope.$history($http, $scope.current_page);
-
       });
-*/
+
       // récupère le détail du post
       $scope.getPayloadMD = function(file_id, tag, idx){
         $scope.getPayloadMD_tag = 0
@@ -58,8 +59,11 @@
       $scope.$watch(function(){
           return $location.path();
       }, function(value){
-          new_page = value.replace( /^\D+/g, '')
-          $scope.$history($http, new_page - 1); // index commence à 0. Contrairement à la pagination
+         if ($scope.current_location != value){
+            new_page = value.replace( /^\D+/g, '');
+            $scope.current_location = value;
+            $scope.$history($http, new_page - 1); // index commence à 0. Contrairement à la pagination
+          }
       });
 
       // GUI
