@@ -53,9 +53,15 @@ body {
 .post_content{
   margin: 0px;
   padding: 0px;
+  width: 100%;
   margin-top: -20px;
 }
+
 .post_title h3{
+}
+
+.accordion{
+  width: 100%;
 }
 
 #pagination_loader {
@@ -110,5 +116,9 @@ body {
     .hide_sx_screen{
       display: none;
       margin-bottom: 0px;
+    }
+
+    .mkdown_input{
+      width: 100%;
     }
 }
