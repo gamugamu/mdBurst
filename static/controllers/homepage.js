@@ -35,18 +35,22 @@
       });
 
       $scope.$history = function($http, current_page, need_appending=false, completion=null){
-        hl_history($http, current_page, function(history_posts, iterator){
-          if (need_appending == true){
-            $scope.posts.push.apply($scope.posts, history_posts);
-          }else{
-            $scope.posts = history_posts
-          }
-          $scope.page_iterator  = iterator
+        if ($scope.page_iterator == undefined ||
+            $scope.page_iterator.max_iteration > current_page){
+              hl_history($http, current_page, function(history_posts, iterator){
+                // append ou refresh les posts
+                if (need_appending == true)
+                  $scope.posts.push.apply($scope.posts, history_posts);
+                else
+                  $scope.posts = history_posts
 
-          if (completion != null){
-            completion()
-          }
-        })
+                $scope.page_iterator = iterator
+                // callback
+                if (completion != null){
+                  completion()
+                }
+          })
+        }
       };
 
       // récupère le détail du post
@@ -100,7 +104,6 @@
 
         return (elemTop >= 0) && (elemBottom <= window.innerHeight);
       }
-
     }
   ]);
 
