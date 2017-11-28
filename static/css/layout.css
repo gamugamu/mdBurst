@@ -1,0 +1,81 @@
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+
+body {
+    background-color: lightblue;
+}
+
+.logo {
+    margin: 0px;
+    background-color: red;
+}
+
+.col-xl-6 {
+  width: 50%;
+  height: 100%;
+}
+
+.search_posts {
+  margin: 10px;
+  display:inline-block;
+}
+
+.image_profil{
+  display:inline-block;
+  margin-bottom: 5px;
+}
+
+.profil{
+  float: right;
+}
+
+.post_profil {
+  position: absolute;
+  bottom: 10px;
+}
+
+.greeting {
+  white-space: nowrap ;
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        background-color: lightgreen;
+    }
+    .col-xl-6 {
+      width: 100% !important;
+      background-color: blue;
+    }
+
+    .search_posts {
+      float: right;
+      width: 50% !important;
+    }
+
+    .post_profil {
+      width: 50% !important;
+      background-color: green;
+      position: relative;
+      float: right;
+      bottom: 0px;
+    }
+
+    .profil{
+      float: left;
+      width: 50% !important;
+    }
+
+
+
+    .logo {
+      float: left;
+      width: 40% !important;
+    }
+    .image_profil{
+      margin-bottom: 0px;
+    }
+
+    .hide_sx_screen{
+      display: none;
+      margin-bottom: 0px;
+    }
+}
