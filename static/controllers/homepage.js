@@ -23,13 +23,14 @@
       // pour l'auto-refresh des pages lorsque l'on est en bas de page.
       $(document).scroll(function(){
         if( isScrolledIntoView(page_auto_refresh) == true &&
-            page_auto_refresh.display != "none"){
+            page_auto_refresh.style.display != "none"){
+
             // evite de réappler cette fonction pendant un appel.
-            page_auto_refresh.display = "none";
+            page_auto_refresh.style.display = "none";
             $scope.current_page += 1;
 
             $scope.$history($http, $scope.current_page, need_appending=true, function(){
-              page_auto_refresh.display = "block";
+              page_auto_refresh.style.display = "block";
             });
         }
       });
@@ -37,6 +38,9 @@
       $scope.$history = function($http, current_page, need_appending=false, completion=null){
         if ($scope.page_iterator == undefined ||
             $scope.page_iterator.max_iteration > current_page){
+              var page_loader = document.getElementById("pagination_loader"); // auto refresh pagination
+              page_loader.style.display = "block";
+
               hl_history($http, current_page, function(history_posts, iterator){
                 // append ou refresh les posts
                 if (need_appending == true)
@@ -44,7 +48,8 @@
                 else
                   $scope.posts = history_posts
 
-                $scope.page_iterator = iterator
+                $scope.page_iterator      = iterator
+                page_loader.style.display = "none";
                 // callback
                 if (completion != null){
                   completion()
