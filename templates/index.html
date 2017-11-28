@@ -22,10 +22,8 @@ ng-controller="mdBurst-api-controller"
 
 {% block content %}
 {{super()}}
-<div class="container-fluid" ng-cloak> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
-      <div class="row">
+<div class="container post_content" ng-cloak> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
               <div id="accordion" class="accordion">
-
                     <div ng-repeat="post in posts">
                       <div
                         ng-click    = "getPayloadMD(post.uid, 'collapse-' + $index, $index)"
@@ -33,26 +31,35 @@ ng-controller="mdBurst-api-controller"
                         data-toggle = "collapse"
                         data-target = {% raw %} "{{ '#collapse-' + $index }}" {% endraw %}
                         data-parent = "#accordion">
-                              {{ "{{ post.name }}" }}
-                        </br> {{ "{{ post.date }}" }}
-                        </br> {{ "{{ post.uid }}" }}
-                        </br> {{ "{{ post.owner }}" }}
-                        <span ng-show="getPayloadMD_tag == 'collapse-' + $index">
-                            <i class="glyphicon glyphicon-refresh spinning"></i>
-                        </span>
+                        <div class="row">
+                            <div class="col-xs-2 col-xm-2 circle">
+                              <img  src="http://www.iptheologie.fr/wp-content/uploads/2016/04/picto-learn.png" alt="Mountain View">
+                            </div>
+                            <div class="col-xs-6 col-xm-6 post_title">
+                                <h3>{{ "{{ post.name }}" }}</h3>
+
+                              <span ng-show="getPayloadMD_tag == 'collapse-' + $index">
+                                  <i class="glyphicon glyphicon-refresh spinning"></i>
+                              </span>
+                            </div>
+                            <div class="col-xs-4 col-xm-4">
+                              <h6> {{ "{{ post.date }}" }}  </h6>
+                              <h6> {{ "{{ post.owner }}" }} </h6>
+                            </div>
+                        </div> <!-- row -->
                       </div>
                       <div id={% raw %} "{{ 'collapse-' + $index }}" {% endraw %} class="collapse">
                         <div ng-bind-html="post.payload"> </div>
                       </div>
                     </div> <!-- endfor -->
               </div> <!-- accordion -->
-      </div> <!-- mkdown_input -->
+
       <ul id="pagination_autorefresh" class="pagination">
           <li ng-repeat="x in [].constructor(page_iterator.max_iteration) track by $index">
             <a href={% raw %} "{{'#' + ($index + 1)}}" {% endraw %}>{{ "{{ $index + 1 }}" }}</a>
           </li>
       </ul> <!-- pagination -->
       <div id="pagination_loader">
-      </div>
+      </div> <!-- pagination_loader -->
 </div> <!-- container -->
 {% endblock %}
