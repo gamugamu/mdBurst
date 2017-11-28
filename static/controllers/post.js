@@ -9,6 +9,8 @@
       $scope.main_input         = "";
       $scope.main_input_tohmtl  = "";
 
+      $('body').height(100);
+      
       // tranform input to md
       $scope.$watch('main_input', function() {
           var html = cv_convert_showdown($scope.main_input)
@@ -35,6 +37,7 @@
 
       // call API, save post
       $scope.postMD =  function(title, payload){
+        return;
         $http({
           method:   'POST',
           url:      ROOT_DIRECTORY_API_SERVICE + '/dc/post',

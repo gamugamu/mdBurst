@@ -18,16 +18,18 @@ ng-controller="mdBurst-api-post"
 
 {% block content %}
 {{super()}}
-          <div class="mkdown_input"  ng-cloak>
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-              <p ng-bind-html="main_input_tohmtl">{{main_input_tohmtl|angular}}</p>
-              </div>
+          <div class="mkdown_post"  ng-cloak>
+            <div class="row">
+              <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                <p ng-bind-html="main_input_tohmtl">{{main_input_tohmtl|angular}}</p>
+              </div><!-- col -->
 
-            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 mkdown_input">
-              <input class="mkdown_input form-control" ng-model="post_title" placeholder="Title">
-              <textarea rows="20%" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" ng-keyup="$event.keyCode === 13 && convert_showdown(main_input)" ng-model="main_input"></textarea>
-              <button type="button" class="btn btn-primary btn-block" ng-click='postMD(post_title, main_input)'>Post</button>
-
-            </div>
-          </div>
+              <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 mkdown_input">
+                <input class="form-inline mkdown_input_title" ng-model="post_title" placeholder="Title">
+                <textarea class="form-control ng-valid ng-dirty ng-valid-parse ng-touched mkdown_input_textarea" ng-keyup="$event.keyCode === 13 && convert_showdown(main_input)" ng-model="main_input"></textarea>
+                <div class="confirm_post"></div>
+                <button type="button" class="btn btn-primary btn-block" ng-click='postMD(post_title, main_input)'>Post</button>
+              </div><!-- col -->
+            </div><!-- row -->
+          </div><!-- mkdown_input -->
 {% endblock %}

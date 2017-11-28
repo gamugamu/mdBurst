@@ -16,16 +16,6 @@ body #file-drop{width:50%;height:50%;background-color: yellow;} /* No drag */
   display: none !important;
 }
 
-/* m */
-.mkdown_input textarea{
-  height:600px;
-}
-
-.mkdown_output{
-  height:600px;
-  overflow-y: scroll;
-}
-
 /* elements TABLE */
 table {
     border-collapse: collapse;
