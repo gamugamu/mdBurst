@@ -47,7 +47,7 @@ ng-controller="mdBurst-api-controller"
                     </div> <!-- endfor -->
               </div> <!-- accordion -->
       </div> <!-- mkdown_input -->
-      <ul class="pagination">
+      <ul id="pagination_autorefresh" class="pagination">
           <li ng-repeat="x in [].constructor(page_iterator.max_iteration + 1) track by $index">
             <a href={% raw %} "{{'#' + ($index + 1)}}" {% endraw %}>{{ "{{ $index + 1 }}" }}</a>
           </li>

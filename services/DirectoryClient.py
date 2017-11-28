@@ -82,7 +82,7 @@ def DirectoryClient(app):
                 "group_name"        : "groupmdBurst",
                 "file_header"       : True,
                 "current_page"      : post["current_page"],
-                "total_per_page"    : 5
+                "total_per_page"    : 10
                 }}))
 
         data = json.loads(r.content)

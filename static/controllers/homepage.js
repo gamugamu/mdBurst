@@ -11,20 +11,43 @@
       $scope.graph              = [];
       $scope.current_page       = 0; // permet de connaitre la page en cours
       $scope.current_location   = "";
+      var page_auto_refresh     = document.getElementById("pagination_autorefresh"); // auto refresh pagination
 
-      $scope.$history = function($http, current_page){
-        hl_history($http, current_page, function(history_posts, iterator){
-          $scope.posts          = history_posts
-          $scope.page_iterator  = iterator
-          console.log("refresh", history_posts, iterator);
-        })
-      };
 
       $(window).load(function() {
         console.log("window");
         $scope.current_location = $location.path();
         $scope.$history($http, $scope.current_page);
       });
+
+      // pour l'auto-refresh des pages lorsque l'on est en bas de page.
+      $(document).scroll(function(){
+        if( isScrolledIntoView(page_auto_refresh) == true &&
+            page_auto_refresh.display != "none"){
+            // evite de réappler cette fonction pendant un appel.
+            page_auto_refresh.display = "none";
+            $scope.current_page += 1;
+
+            $scope.$history($http, $scope.current_page, need_appending=true, function(){
+              page_auto_refresh.display = "block";
+            });
+        }
+      });
+
+      $scope.$history = function($http, current_page, need_appending=false, completion=null){
+        hl_history($http, current_page, function(history_posts, iterator){
+          if (need_appending == true){
+            $scope.posts.push.apply($scope.posts, history_posts);
+          }else{
+            $scope.posts = history_posts
+          }
+          $scope.page_iterator  = iterator
+
+          if (completion != null){
+            completion()
+          }
+        })
+      };
 
       // récupère le détail du post
       $scope.getPayloadMD = function(file_id, tag, idx){
@@ -70,6 +93,14 @@
       function display_wait(tag){
         $scope.getPayloadMD_tag = tag
       }
+
+      function isScrolledIntoView(elm) {
+        var elemTop     = elm.getBoundingClientRect().top;
+        var elemBottom  = elm.getBoundingClientRect().bottom;
+
+        return (elemTop >= 0) && (elemBottom <= window.innerHeight);
+      }
+
     }
   ]);
 
