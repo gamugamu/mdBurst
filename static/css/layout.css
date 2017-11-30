@@ -70,7 +70,7 @@ body {
 }
 
 #post_confirm_step_1{
-    background-color: blue;
+    background-color: lightblue;
     height: 100%;
 }
 
@@ -83,6 +83,12 @@ body {
   width: 100%;
   position: absolute;
   bottom: 0;
+}
+
+.post_confirm_category_select{
+  background: red;
+  height: 20px;
+  width: 20px;
 }
 
 .post_confirm_cancel{

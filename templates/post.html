@@ -30,10 +30,20 @@ ng-controller="mdBurst-api-post"
                 <div id="confirm_post">
                   <div id="post_confirm_step_1">
                     <p>choississez une categorie</p>
-                  </div><!-- step_2 -->
+                      <div ng-repeat="x in range('2') track by $index " class="row">
+                          <div ng-repeat="y in range('4') track by $index" class="col-xs-3">
+                            <div class="post_confirm_category_select">u</div>
+                          </div><!-- col -->
+                      </div><!-- row -->
+                  </div><!-- step_1 -->
 
                   <div id="post_confirm_step_2">
                     <input type="text" placeholder="ajouter tag">
+                    <!-- Deletable Chip -->
+                    <span class="mdl-chip mdl-chip--deletable">
+                      <span class="mdl-chip__text">Deletable Chip</span>
+                      <button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
+                    </span>
                   </div><!-- step_2 -->
 
                   <div class="btn-group-justified post_confirm_bt">

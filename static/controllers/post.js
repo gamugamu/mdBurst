@@ -10,7 +10,11 @@
       $scope.main_input_tohmtl  = "";
 
       $('body').height(100);
-
+      // utils
+      $scope.range = function(count){
+        console.log("iteratiob");
+        return new Array(+count);
+      };
       // tranform input to md
       $scope.$watch('main_input', function() {
           var html = cv_convert_showdown($scope.main_input)
@@ -47,6 +51,7 @@
           element.style.display = "none";
         }else if (counter >= 2){
           counter = 1;
+          $scope.postMD($scope.post_title, $scope.main_input)
         }
         else {
             var element = document.getElementById("confirm_post");
@@ -65,7 +70,6 @@
 
       // call API, save post
       $scope.postMD =  function(title, payload){
-        return;
         $http({
           method:   'POST',
           url:      ROOT_DIRECTORY_API_SERVICE + '/dc/post',
