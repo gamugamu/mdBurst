@@ -10,7 +10,7 @@
       $scope.main_input_tohmtl  = "";
 
       $('body').height(100);
-      
+
       // tranform input to md
       $scope.$watch('main_input', function() {
           var html = cv_convert_showdown($scope.main_input)
@@ -34,6 +34,34 @@
             console.log("error");
           });
       };
+
+      var counter = 0;
+      // call API, save post
+      $scope.post_next_step = function(step){
+        console.log(counter);
+        counter += step;
+        steps = ["post_confirm_step_1", "post_confirm_step_2"];
+        // no steps
+        if (counter == -1){
+          var element = document.getElementById("confirm_post");
+          element.style.display = "none";
+        }else if (counter >= 2){
+          counter = 1;
+        }
+        else {
+            var element = document.getElementById("confirm_post");
+            element.style.display = "block";
+            // clean all display
+            for(var elm in steps){
+              var element           = document.getElementById(steps[elm]);
+              element.style.display = "none";
+            }
+            // display only revelant step
+            var element           = document.getElementById(steps[counter]);
+          //  console.log(element);
+            element.style.display = "block";
+          }
+      }// func
 
       // call API, save post
       $scope.postMD =  function(title, payload){

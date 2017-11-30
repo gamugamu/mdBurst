@@ -43,7 +43,6 @@ body {
 }
 
 .circle img{
-    background-color: red;
     min-width: 50px;
     min-height:50px;
     width: 50px;
@@ -67,8 +66,31 @@ body {
   width: 50px;
   height: 50px;
   border: 1px solid;
-  background-color: red;
   position: center;
+}
+
+#post_confirm_step_1{
+    background-color: blue;
+    height: 100%;
+}
+
+#post_confirm_step_2{
+    background-color: red;
+    height: 100%;
+}
+
+.post_confirm_bt{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.post_confirm_cancel{
+
+}
+
+.post_confirm_ok{
+
 }
 
 @media screen and (max-width: 360px) {
@@ -124,7 +146,6 @@ body {
 
     .mkdown_input{
       height: 100%;
-      background: red;
     }
 
     .mkdown_output{
@@ -153,11 +174,12 @@ body {
         /*height: calc(40vh - 50px);*/
     }
 
-    .confirm_post{
-      height: 0px;
+    #confirm_post{
+      height: 200px;
       left: 0;
       bottom: 0;
       background-color: orange;
+      position: relative;
     }
 
     .post_btn{
