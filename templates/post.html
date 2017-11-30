@@ -31,10 +31,13 @@ ng-controller="mdBurst-api-post"
                   <div id="post_confirm_step_1">
                     <p>choississez une categorie</p>
                       <div ng-repeat="x in range('2') track by $index " class="row">
-                          <div ng-repeat="y in range('4') track by $index" class="col-xs-3">
-                            <div class="post_confirm_category_select">u</div>
+                          <div ng-repeat="y in range('4') track by $index" class="col-xs-3 post_cat_colon">
+                            <div class="post_confirm_category_select center-block" ng-click='category_selected($parent.$index, $index)'>u</div>
                           </div><!-- col -->
                       </div><!-- row -->
+                      <div class="btn-group-justified post_confirm_bt">
+                        <a href="#" class="btn btn-primary" ng-click='post_next_step(-1)'>cancel</a>
+                      </div><!-- post_confirm -->
                   </div><!-- step_1 -->
 
                   <div id="post_confirm_step_2">
@@ -44,15 +47,17 @@ ng-controller="mdBurst-api-post"
                       <span class="mdl-chip__text">Deletable Chip</span>
                       <button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
                     </span>
+
+                    <div class="btn-group-justified post_confirm_bt">
+                      <a href="#" class="btn btn-primary" ng-click='post_next_step(-1)'>cancel</a>
+                      <a href="#" class="btn btn-primary" ng-click='post_next_step(1)'>confirm</a>
+                    </div><!-- post_confirm -->
                   </div><!-- step_2 -->
 
-                  <div class="btn-group-justified post_confirm_bt">
-                    <a href="#" class="btn btn-primary" ng-click='post_next_step(-1)'>cancel</a>
-                    <a href="#" class="btn btn-primary" ng-click='post_next_step(1)'>confirm</a>
-                  </div><!-- post_confirm -->
+
 
                 </div><!-- confirm_post -->
-                <button type="button" class="btn btn-primary btn-block post_btn" ng-click=post_next_step(1)>Post</button>
+                <button type="button" class="btn btn-primary btn-block" id="post_btn" ng-click=post_next_step(1)>Post</button>
                 <!-- 'postMD(post_title, main_input)' -->
               </div><!-- col -->
             </div><!-- row -->

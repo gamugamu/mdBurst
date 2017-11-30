@@ -85,10 +85,14 @@ body {
   bottom: 0;
 }
 
+.post_cat_colon{
+    padding-bottom: 20px;
+}
+
 .post_confirm_category_select{
   background: red;
-  height: 20px;
-  width: 20px;
+  height: 50px;
+  width: 50px;
 }
 
 .post_confirm_cancel{
@@ -188,7 +192,7 @@ body {
       position: relative;
     }
 
-    .post_btn{
+    #post_btn{
       position: absolute;
       /* Set the fixed height of the footer here */
       height: 60px;

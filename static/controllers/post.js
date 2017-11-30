@@ -15,6 +15,12 @@
         console.log("iteratiob");
         return new Array(+count);
       };
+
+      $scope.category_selected = function(row, column){
+        console.log("uu", $scope.counter_step);
+        $scope.post_next_step(1);
+      };
+
       // tranform input to md
       $scope.$watch('main_input', function() {
           var html = cv_convert_showdown($scope.main_input)
@@ -39,30 +45,35 @@
           });
       };
 
-      var counter = 0;
       // call API, save post
+      var counter_step = 0;
       $scope.post_next_step = function(step){
-        console.log(counter);
-        counter += step;
-        steps = ["post_confirm_step_1", "post_confirm_step_2"];
+        counter_step += step;
+        steps         = ["post_confirm_step_1", "post_confirm_step_2"];
+        var post_btn  = document.getElementById("post_btn");
+        console.log("****", counter_step);
         // no steps
-        if (counter == -1){
+        if (counter_step <= -1){
           var element = document.getElementById("confirm_post");
-          element.style.display = "none";
-        }else if (counter >= 2){
-          counter = 1;
+          element.style.display   = "none";
+          post_btn.style.display  = "block";
+
+        }else if (counter_step >= 2){
+          counter_step = 1;
           $scope.postMD($scope.post_title, $scope.main_input)
         }
         else {
             var element = document.getElementById("confirm_post");
-            element.style.display = "block";
+            element.style.display   = "block";
+            post_btn.style.display  = "none";
+
             // clean all display
             for(var elm in steps){
               var element           = document.getElementById(steps[elm]);
               element.style.display = "none";
             }
             // display only revelant step
-            var element           = document.getElementById(steps[counter]);
+            var element = document.getElementById(steps[counter_step]);
           //  console.log(element);
             element.style.display = "block";
           }
@@ -87,6 +98,8 @@
       $scope.navigateTo = function(uri = ""){
         window.location.replace(window.location.origin + uri);
       }
+
+      $scope.post_next_step(-1); // affichage par défault
     }
   ]);
 
