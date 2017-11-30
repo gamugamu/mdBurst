@@ -70,7 +70,7 @@ body {
 }
 
 #post_confirm_step_1{
-    background-color: lightblue;
+    background-color: green;
     height: 100%;
 }
 
@@ -79,10 +79,28 @@ body {
     height: 100%;
 }
 
+.mkdown_input_title{
+  width: 100%;
+}
+
 .post_confirm_bt{
   width: 100%;
   position: absolute;
   bottom: 0;
+}
+
+#post_btn{
+  position: absolute;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+}
+
+#confirm_post{
+  height: 200px;
+  left: 0;
+  bottom: 0;
+  background-color: orange;
+  position: relative;
 }
 
 .post_cat_colon{
@@ -166,10 +184,6 @@ body {
       background: green;
     }
 
-    .mkdown_input_title{
-      width: 100%;
-    }
-
     /* result 50px*/
     .mkdown_post textarea.form-control{
       background: yellow;
@@ -183,17 +197,57 @@ body {
         display: none;
         /*height: calc(40vh - 50px);*/
     }
+}
 
-    #confirm_post{
-      height: 200px;
-      left: 0;
-      bottom: 0;
-      background-color: orange;
-      position: relative;
+@media screen and (min-width: 481px) {
+    body {
+        background-color: lightblue;
+        overflow-x: hidden;
+    }
+
+    .post_result{
+        background-color: violet;
+        height: 200px;
+        overflow-y: scroll;
+        padding: 0px;
+        display: block;
+        /*height: calc(40vh - 50px);*/
+    }
+
+    /* result 50px*/
+    .mkdown_post textarea.form-control{
+      background: yellow;
+      height: calc(100vh - 570px); /* 85 header */
+    }
+}
+
+@media screen and (min-width: 781px) {
+    body {
+        background-color: red;
+        overflow-x: hidden;
+    }
+
+    .post_result{
+        background-color: violet;
+        width: 50%;
+        overflow-y: scroll;
+        padding: 0px;
+        display: block;
+        float: left;
+        height: calc(100vh - 245px);
+    }
+
+    .mkdown_input{
+      float: right;
+      width: 50%;
+    }
+
+    .mkdown_post textarea.form-control{
+      height: calc(100vh - 330px);
     }
 
     #post_btn{
-      position: absolute;
+      position: relative;
       /* Set the fixed height of the footer here */
       height: 60px;
     }

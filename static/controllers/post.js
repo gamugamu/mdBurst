@@ -12,7 +12,6 @@
       $('body').height(100);
       // utils
       $scope.range = function(count){
-        console.log("iteratiob");
         return new Array(+count);
       };
 
