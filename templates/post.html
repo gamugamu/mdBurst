@@ -12,6 +12,11 @@
 <script src="{{ url_for('static', filename='controllers/post.js') }}"></script>
 {% endblock %}
 
+{% block styles %}
+{{super()}}
+<link href="{{ url_for('static', filename='css/post.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block body_attribs %}
 ng-controller="mdBurst-api-post"
 {% endblock %}
@@ -41,12 +46,12 @@ ng-controller="mdBurst-api-post"
                   </div><!-- step_1 -->
 
                   <div id="post_confirm_step_2">
-                    <input type="text" placeholder="ajouter tag">
+                    <form ng-submit="add_tag()">
+                      <input type="text" placeholder="ajouter tag" ng-model="tag_value">
+                    </form>
+
                     <!-- Deletable Chip -->
-                    <span class="mdl-chip mdl-chip--deletable">
-                      <span class="mdl-chip__text">Deletable Chip</span>
-                      <button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
-                    </span>
+                    <div ng-bind-html="renderTagsHtml" id="renderTags"></div>
 
                     <div class="btn-group-justified post_confirm_bt">
                       <a href="#" class="btn btn-primary" ng-click='post_next_step(-1)'>cancel</a>
@@ -60,4 +65,16 @@ ng-controller="mdBurst-api-post"
               </div><!-- col -->
             </div><!-- row -->
           </div><!-- mkdown_input -->
+
+          <dialog class="mdl-dialog">
+            <h4 class="mdl-dialog__title">Post vide</h4>
+            <div class="mdl-dialog__content">
+              <p>
+                Le post est vide!
+              </p>
+            </div>
+            <div class="mdl-dialog__actions">
+              <button type="button" class="mdl-button">Ok</button>
+            </div>
+          </dialog>
 {% endblock %}
