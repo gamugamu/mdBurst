@@ -71,24 +71,18 @@ body {
   min-width: 390px;
 }
 
-.circle{
-    min-width:  35px;
-    min-height: 35px;
-    width:      35px;
-    height:     35px;
-}
-
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
+.vertical-center {
+  transform: translateY(30%);
 }
 
 .post_content{
   margin: 0px;
+  margin-top: 20px;
   padding: 0px;
 }
 
-.post_title h3{
+.post_title{
+  margin: 0px;
 }
 
 .accordion{

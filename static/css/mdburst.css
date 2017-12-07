@@ -90,14 +90,32 @@ img {
 }
 /* cells */
 
+.img_cell{
+    min-width:  35px;
+    min-height: 35px;
+    width:      35px;
+    height:     35px;
+}
+
 .mdcell{
-  height: 80px;
+  height: 60px;
   background-color: white;
   border-bottom-style: solid;
   border-bottom-color: #dddddd;
   border-width: 0.1px;
 }
 
+.post_date{
+  display:inline-block;
+  position: relative;
+  background: red;
+}
+
+.post_owner{
+  display:inline-block;
+  background: blue;
+  position: relative;
+}
 /* sidebar */
 #sidebar .toc{
   display: block;
