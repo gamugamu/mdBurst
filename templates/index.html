@@ -32,11 +32,12 @@ ng-controller="mdBurst-api-controller"
                         data-target = {% raw %} "{{ '#collapse-' + $index }}" {% endraw %}
                         data-parent = "#accordion">
                         <div class="row">
-                            <div class="col-xs-2 col-xm-2 circle">
-                              <img  src="http://www.iptheologie.fr/wp-content/uploads/2016/04/picto-learn.png" alt="Mountain View">
+                            <div class="col-xs-2 col-xm-2">
+                              <img class="circle center-block" src="http://www.iptheologie.fr/wp-content/uploads/2016/04/picto-learn.png" alt="Mountain View">
                             </div>
                             <div class="col-xs-6 col-xm-6 post_title">
                                 <h3>{{ "{{ post.name }}" }}</h3>
+                                <h6> {{ "{{ post.owner }}" }} </h6>
 
                               <span ng-show="getPayloadMD_tag == 'collapse-' + $index">
                                   <i class="glyphicon glyphicon-refresh spinning"></i>
@@ -44,7 +45,6 @@ ng-controller="mdBurst-api-controller"
                             </div>
                             <div class="col-xs-4 col-xm-4">
                               <h6> {{ "{{ post.date }}" }}  </h6>
-                              <h6> {{ "{{ post.owner }}" }} </h6>
                             </div>
                         </div> <!-- row -->
                       </div>

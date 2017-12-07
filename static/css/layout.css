@@ -1,12 +1,30 @@
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
 
 body {
-    background-color: lightblue;
     overflow-x: hidden;
+}
+
+.header{
+  height: 50px;
 }
 
 .logo {
     margin: 0px;
+    height: 30px;
+    margin: 10px;
+    float: left;
+}
+
+.search_box{
+  display:inline-block;
+  position: absolute;
+  height: 40px;
+  margin: 5px;
+}
+
+.search_box_inside{
+  height: 40px;
+  margin-top: -13px;
 }
 
 .col-xl-6 {
@@ -22,10 +40,21 @@ body {
 
 .image_profil{
   display:inline-block;
-  margin-bottom: 5px;
+  float: right;
+  width: 35px;
+  height:35px;
+  margin: 8px;
 }
 
 .profil{
+  float: right;
+}
+
+.post_profil_group{
+  background-color: #f6624c;
+  padding: 0px;
+  height: 110px; /* 100% ne marche pas */
+  width: 33%;
   float: right;
 }
 
@@ -42,12 +71,16 @@ body {
   min-width: 390px;
 }
 
-.circle img{
-    min-width: 50px;
-    min-height:50px;
-    width: 50px;
-    height:50px;
-    margin: 10px;
+.circle{
+    min-width:  35px;
+    min-height: 35px;
+    width:      35px;
+    height:     35px;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .post_content{
@@ -70,12 +103,10 @@ body {
 }
 
 #post_confirm_step_1{
-    background-color: green;
     height: 100%;
 }
 
 #post_confirm_step_2{
-    background-color: red;
     height: 100%;
 }
 
@@ -99,7 +130,6 @@ body {
   height: 200px;
   left: 0;
   bottom: 0;
-  background-color: orange;
   position: relative;
 }
 
@@ -108,7 +138,6 @@ body {
 }
 
 .post_confirm_category_select{
-  background: red;
   height: 50px;
   width: 50px;
 }
@@ -121,44 +150,28 @@ body {
 
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 400px) {
 .header{
   display: none;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 620px) {
     body {
-        background-color: green;
         overflow-x: hidden;
-    }
-    .col-xl-6 {
-      width: 100% !important;
-      background-color: blue;
-    }
-
-    .search_posts {
-      float: right;
-      margin-left: 0px;
-      width: 50% !important;
     }
 
     .post_profil {
       width: 50% !important;
-      background-color: green;
       position: relative;
       float: right;
       bottom: 0px;
+      background: blue;
     }
 
-    .profil{
-      float: left;
-      width: 50% !important;
-    }
 
     .logo {
       float: left;
-      width: 40% !important;
     }
     .image_profil{
       margin-bottom: 0px;
@@ -181,17 +194,14 @@ body {
     }
 
     .mkdown_input row{
-      background: green;
     }
 
     /* result 50px*/
     .mkdown_post textarea.form-control{
-      background: yellow;
       height: calc(100vh - 370px); /* 85 header */
     }
 
     .post_result{
-        background-color: violet;
         height: 0px;
         padding: 0px;
         display: none;
@@ -201,12 +211,10 @@ body {
 
 @media screen and (min-width: 481px) {
     body {
-        background-color: lightblue;
         overflow-x: hidden;
     }
 
     .post_result{
-        background-color: violet;
         height: 200px;
         overflow-y: scroll;
         padding: 0px;
@@ -216,19 +224,16 @@ body {
 
     /* result 50px*/
     .mkdown_post textarea.form-control{
-      background: yellow;
       height: calc(100vh - 570px); /* 85 header */
     }
 }
 
 @media screen and (min-width: 781px) {
     body {
-        background-color: red;
         overflow-x: hidden;
     }
 
     .post_result{
-        background-color: violet;
         width: 50%;
         overflow-y: scroll;
         padding: 0px;

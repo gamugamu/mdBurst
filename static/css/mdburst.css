@@ -1,4 +1,9 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
 [ng\:cloak],[ng-cloak],.ng-cloak{display:none !important}
+
+html, html * {
+  font-family: Roboto;
+}
 
 /* Body */
 body {
@@ -73,23 +78,24 @@ img {
 
 /* header */
 .header{
-  background-color: #dddddd;
+  background-color: #f3381c;
   color: white;
 }
 
+.btn_post{
+  background-color: #b9210a;
+  color: white;
+  margin: 8px;
+  float: right;
+}
 /* cells */
 
 .mdcell{
   height: 80px;
-  background-color: #eeeeee;
+  background-color: white;
   border-bottom-style: solid;
-
+  border-bottom-color: #dddddd;
   border-width: 0.1px;
-}
-
-.black {
-  background-color: DimGray;
-  color: white;
 }
 
 /* sidebar */
@@ -99,7 +105,7 @@ img {
 }
 
 #footer {
-  background-color: #424242;
+  background-color: #11a200;
   width: 100%;
   margin-top: 40px;
   padding: 40px;
