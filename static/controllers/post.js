@@ -49,21 +49,21 @@
       // call API, save post
       var counter_step = 0;
       $scope.post_next_step = function(step){
-        counter_step += step;
-        steps         = ["post_confirm_step_1", "post_confirm_step_2"];
-        var post_btn  = document.getElementById("post_btn");
-        console.log("****", counter_step);
-        // no steps
-        if (counter_step <= -1){
-          var element = document.getElementById("confirm_post");
-          element.style.display   = "none";
-          post_btn.style.display  = "block";
+          counter_step += step;
+          steps         = ["post_confirm_step_1", "post_confirm_step_2"];
+          var post_btn  = document.getElementById("post_btn");
 
-        }else if (counter_step >= 2){
-          counter_step = 1;
-          $scope.postMD($scope.post_title, $scope.main_input)
-        }
-        else {
+          // no steps
+          if (counter_step <= -1){
+            var element = document.getElementById("confirm_post");
+            element.style.display   = "none";
+            post_btn.style.display  = "block";
+
+          }else if (counter_step >= 2){
+            counter_step = 1;
+            $scope.postMD($scope.post_title, $scope.main_input)
+          }
+          else {
             var element = document.getElementById("confirm_post");
             element.style.display   = "block";
             post_btn.style.display  = "none";
@@ -101,19 +101,8 @@
 
       // call API, save post
       $scope.postMD = function(title, payload){
-        console.log("RESULT", $scope.main_input, $scope.post_title);
-
-        if ($scope.main_input == "" && $scope.post_title == "") {
-          var dialog = document.querySelector('dialog');
-
-          if (! dialog.showModal) {
-            dialogPolyfill.registerDialog(dialog);
-          }
-          dialog.showModal();
-          dialog.querySelector('.close').addEventListener('click', function() {
-              dialog.close();
-          });
-        }else{
+        if (is_post_empty_dialboxed()) {}
+        else{
           $http({
             method:   'POST',
             url:      ROOT_DIRECTORY_API_SERVICE + '/dc/post',
@@ -126,6 +115,23 @@
           }); // http
         } // if
       }// func
+
+      function is_post_empty_dialboxed(){
+        var should_open_dialog = $scope.main_input == "" && $scope.post_title == "";
+        if (should_open_dialog) {
+          var dialog = document.querySelector('dialog');
+
+          if (! dialog.showModal) {
+            dialogPolyfill.registerDialog(dialog);
+          }
+          dialog.showModal();
+          dialog.querySelector('.close').addEventListener('click', function() {
+              dialog.close();
+          });
+        }
+
+        return should_open_dialog;
+      }
 
       $scope.navigateTo = function(uri = ""){
         window.location.replace(window.location.origin + uri);
