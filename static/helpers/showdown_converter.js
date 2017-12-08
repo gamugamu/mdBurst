@@ -30,7 +30,7 @@ function cv_parseMdForImage(text, image_base_64) {
               function($0,$1){
                 $0 = $0.replace("data:image_", "")
                 var idx = parseInt($0)
-                return '<img id="blah" src="' + image_base_64[idx] + '" alt="your image" />'
+                return '<img id="blah" src="' + image_base_64[idx] + '"/>'
               });
 
     return text

@@ -34,7 +34,7 @@
       $scope.imageDropped = function(){
           //Get the file
           $scope.images_Base64_list.push($scope.uploadedFile);
-          $scope.main_input += $scope.uploadedFile.substring(0, 10) + "_" + ($scope.images_Base64_list.length - 1)
+          $scope.main_input += "\n" + $scope.uploadedFile.substring(0, 10) + "_" + ($scope.images_Base64_list.length - 1)
       };
 
       // call API, save post
@@ -97,8 +97,10 @@
             method:   'POST',
             url:      ROOT_DIRECTORY_API_SERVICE + '/dc/post',
             data: JSON.stringify({
-              "title"   : title,
-              "payload" : $sce.getTrustedHtml(payload)})
+              "title"         : title,
+              "payload"       : $sce.getTrustedHtml(payload),
+              "image_base_64" : $scope.images_Base64_list}
+            )
           }).then(function(response) {
             // redirection homePage. le post doit être en haut de liste.
             $scope.navigateTo()

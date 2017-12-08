@@ -1,14 +1,13 @@
 # coding: utf8
 import services.ConfigLoader as ConfigLoader
 import services.DirectoryAutoAcount as DAA
+from services import Cloudinary
 
 import requests
-from flask import request
-
 import json
-
 import time
 
+from flask import request
 
 TOKEN_REQU_HEADER       = "token-request"
 TOKEN_HEADER            = "token"
@@ -31,7 +30,14 @@ def DirectoryClient(app):
 
     @app.route('/dc/post', methods=["POST"])
     def post():
-        post =  request.get_json()
+        post    =  request.get_json()
+        payload = post["payload"]
+
+        for idx, image_64 in enumerate(post["image_base_64"]):
+            # Cloudinary
+            image_tag   = "data:image_" + str(idx)
+            image_Link  = Cloudinary.upload_image(image_64)
+            payload     = payload.replace(image_tag, "![](" + image_Link + ")")
 
         token           = DAA.getToken()
         headers_auth    = {'content-type': 'application/json', TOKEN_HEADER : token}
@@ -41,7 +47,7 @@ def DirectoryClient(app):
             "type"      : 2,
             "owner"     : "unknow",
             "title"     : post["title"],
-            "payload"   : post["payload"]
+            "payload"   : payload
         }}
 
         r = requests.post(

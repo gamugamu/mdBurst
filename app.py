@@ -12,7 +12,6 @@ from flask_triangle import Triangle
 from services.FileUpload import FileUpload
 from services import DirectoryClient
 from services.Login import Login
-from services import Cloudinary
 
 app = Flask(__name__)
 app.config['SECRET_KEY']                = 'top secret!'
