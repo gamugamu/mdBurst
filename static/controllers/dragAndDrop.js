@@ -19,8 +19,10 @@ angular.module('ui.imagedrop', [])
 
             //When a file is dropped
             var loadFile = function (file) {
-                scope.uploadedFile = file;
-                scope.$apply(onImageDrop(scope));
+                readURL(file, function(result){
+                  scope.uploadedFile = result;
+                  scope.$apply(onImageDrop(scope));
+                })
             };
 
             //Dragging begins on the document
@@ -32,6 +34,18 @@ angular.module('ui.imagedrop', [])
                        onDragEnd(e);
                        loadFile(e.originalEvent.dataTransfer.files[0]);
                    });
-        }
-    };
-});
+
+            function readURL(input, callback) {
+              var reader = new FileReader();
+
+              reader.onload = function(e) {
+                //$('#blah').attr('src', e.target.result);
+                callback(e.target.result)
+              }
+
+              reader.readAsDataURL(input);
+            }
+
+        } // func
+    }; // return
+}); // directive

@@ -15,7 +15,6 @@
 
 
       $(window).load(function() {
-        console.log("window");
         $scope.current_location = $location.path();
         $scope.$history($http, $scope.current_page);
       });

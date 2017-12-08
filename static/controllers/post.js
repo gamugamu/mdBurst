@@ -3,13 +3,14 @@
   'use strict';
 
 // gère les posts
-  angular.module('mdBurst-api', ['ngSanitize'])
+  angular.module('mdBurst-api', ['ngSanitize', 'ui.imagedrop'])
   .controller('mdBurst-api-post', ['$scope','$log', '$http', '$sce', '$compile', '$window',
     function($scope, $log, $http, $sce, $compile, $window) {
-      $scope.main_input         = "";
-      $scope.main_input_tohmtl  = "";
-      $scope.post_title         = "";
-      $scope.renderTagsHtml     = "";
+      $scope.main_input           = "";
+      $scope.main_input_tohmtl    = "";
+      $scope.post_title           = "";
+      $scope.renderTagsHtml       = "";
+      $scope.images_Base64_list   = [];
 
       $('body').height(100);
       // utils
@@ -24,26 +25,16 @@
 
       // tranform input to md
       $scope.$watch('main_input', function() {
-          var html = cv_convert_showdown($scope.main_input)
-          $scope.main_input_tohmtl = $sce.trustAsHtml(html);
+          var html = cv_convert_showdown($scope.main_input, $scope.images_Base64_list)
+        //  $scope.main_input         = $scope.main_input.replace("data:image_", 'data_image:');
+          $scope.main_input_tohmtl  = $sce.trustAsHtml(html);
       }, true);
 
       //Drop uploads
       $scope.imageDropped = function(){
           //Get the file
-          var fd = new FormData();
-          fd.append('file', $scope.uploadedFile);
-
-          $http.post("/upload2", fd,{
-            transformRequest: angular.identity,
-            headers: {'Content-Type': undefined},
-           })
-          .success(function (data) {
-            $scope.main_input += "\n![](" + data + ")"
-          })
-          .error(function (error) {
-            console.log("error");
-          });
+          $scope.images_Base64_list.push($scope.uploadedFile);
+          $scope.main_input += "\n" + $scope.uploadedFile.substring(0, 10) + "_" + ($scope.images_Base64_list.length - 1)
       };
 
       // call API, save post
@@ -75,7 +66,6 @@
             }
             // display only revelant step
             var element = document.getElementById(steps[counter_step]);
-          //  console.log(element);
             element.style.display = "block";
           }
       }// func
@@ -107,8 +97,10 @@
             method:   'POST',
             url:      ROOT_DIRECTORY_API_SERVICE + '/dc/post',
             data: JSON.stringify({
-              "title"   : title,
-              "payload" : $sce.getTrustedHtml(payload)})
+              "title"         : title,
+              "payload"       : $sce.getTrustedHtml(payload),
+              "image_base_64" : $scope.images_Base64_list}
+            )
           }).then(function(response) {
             // redirection homePage. le post doit être en haut de liste.
             $scope.navigateTo()
