@@ -11,7 +11,9 @@
       $scope.post_title           = "";
       $scope.renderTagsHtml       = "";
       $scope.images_Base64_list   = [];
-
+      $scope.idx_selected_category = 0;
+      // from SERVER
+      var categories = ["UX", "DEV", "IOS", "PYTH", "AND", "JAVA", "PROD"]
       $('body').height(100);
       // utils
       $scope.range = function(count){
@@ -20,6 +22,7 @@
 
       $scope.category_selected = function(row, column){
         console.log("uu", row, column);
+        $scope.idx_selected_category = row * column;
         $scope.post_next_step(1);
       };
 
@@ -99,7 +102,8 @@
             data: JSON.stringify({
               "title"         : title,
               "payload"       : $sce.getTrustedHtml(payload),
-              "image_base_64" : $scope.images_Base64_list}
+              "image_base_64" : $scope.images_Base64_list,
+              "category"      : categories[$scope.idx_selected_category]}
             )
           }).then(function(response) {
             // redirection homePage. le post doit être en haut de liste.

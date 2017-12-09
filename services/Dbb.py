@@ -2,6 +2,7 @@
 import redis
 import os
 import services.ConfigLoader as ConfigLoader
+from decimal import Decimal
 
 if "REDIS_URL" in os.environ:
     r = redis.from_url(os.environ['REDIS_URL'])
@@ -108,3 +109,29 @@ def removedValue(data, value):
         data = data[:-1]
 
     return data
+
+##### LIST
+
+def add_for_sorting(member="", key="", subKey="", sort_value=""):
+    sadd(member, key)
+    hset(key, subKey, Decimal(sort_value))
+
+def remove_from_sorting(member="", key="", subKey="", sort_value=""):
+    srem(member, key)
+
+def sadd(member="", key=""):
+    r.sadd(member, key)
+
+def hset(key="", subKey="", sort_value=""):
+    r.hset(key, subKey, sort_value)
+
+def srem(member="", key=""):
+    r.hset(member, key)
+
+##### SORT
+
+def sort(member="", by="", desc=False, start=None, num= None):
+    return r.sort(name=member, by=by, desc=desc, start=start, num=num)
+
+def scard(name=""):
+    return r.scard(name)
