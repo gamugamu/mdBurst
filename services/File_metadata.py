@@ -11,7 +11,7 @@ def select_category_to_file(file_name, category):
     Dbb.sadd("META_" + file_name, category)
 
 def get_file_meta(file_name):
-    return Dbb.smember(key=file_name):
+    return Dbb.smember(key=file_name)
 
 
 # by date
