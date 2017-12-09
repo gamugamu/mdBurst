@@ -4,14 +4,11 @@ import time
 
 #by date
 def select_category_to_file(file_name, category):
-    print "TIME ", time.time()
     Dbb.add_for_sorting(category, file_name, "date", time.time())
-    user            = Dbb.collection_for_Key(typeKey=Type.USER.name, key=user_id)
-    user["group"]   = Dbb.removedValue(user["group"], group_id)
     Dbb.sadd("META_" + file_name, category)
 
 def get_file_meta(file_name):
-    return Dbb.smember(key=file_name)
+    return Dbb.smembers(key="META_"+file_name)
 
 
 # by date

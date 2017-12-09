@@ -22,7 +22,7 @@
 
       $scope.category_selected = function(row, column){
         console.log("uu", row, column);
-        $scope.idx_selected_category = row * column;
+        $scope.idx_selected_category = (row + 1) * (column + 1);
         $scope.post_next_step(1);
       };
 
@@ -96,6 +96,7 @@
       $scope.postMD = function(title, payload){
         if (is_post_empty_dialboxed()) {}
         else{
+          console.log("-->", $scope.idx_selected_category);
           $http({
             method:   'POST',
             url:      ROOT_DIRECTORY_API_SERVICE + '/dc/post',

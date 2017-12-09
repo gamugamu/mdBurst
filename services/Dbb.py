@@ -122,6 +122,9 @@ def remove_from_sorting(member="", key="", subKey="", sort_value=""):
 def sadd(member="", key=""):
     r.sadd(member, key)
 
+def smembers(key=""):
+    return r.smembers(key)
+
 def hset(key="", subKey="", sort_value=""):
     r.hset(key, subKey, sort_value)
 

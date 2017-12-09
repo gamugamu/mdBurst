@@ -28,20 +28,23 @@ def DirectoryClient(app):
             data    = json.dumps(data)
             )
 
+        print "graph", r.content
         return r.content
 
     @app.route('/dc/post', methods=["POST"])
     def post():
         post        = request.get_json()
-        print "P", post
+
         payload     = post["payload"]
         title       = post["title"]
         category    = post["category"]
-
+        print "category", category
         for idx, image_64 in enumerate(post["image_base_64"]):
             # Cloudinary
             image_tag   = "data:image_" + str(idx)
             image_Link  = Cloudinary.upload_image(image_64)
+            print "D", image_Link
+
             payload     = payload.replace(image_tag, "![](" + image_Link + ")")
 
         token           = DAA.getToken()
@@ -62,15 +65,20 @@ def DirectoryClient(app):
             )
 
         # if r.content ok
-        File_metadata.select_category_to_file(file_name=title, category=category)
-        f = File_metadata.get_file_for_category(category=category, start=0, num=10)
-        print "result ", f
+        result = json.loads(r.content)
+
+        # success
+        if int(result["error"]["code"]) == 1:
+            File_metadata.select_category_to_file(file_name=result["filepayload"]["uid"], category=category)
+        else:
+            #TODO error handling
+            pass
 
         return r.content
 
     @app.route('/dc/getPayload', methods=["POST"])
     def get_payload():
-        post            =  request.get_json()
+        post            = request.get_json()
         token           = DAA.getToken()
         headers_auth    = {'content-type': 'application/json', TOKEN_HEADER : token}
         filesID         = {"filesid" : post["filesid"]}
@@ -82,6 +90,7 @@ def DirectoryClient(app):
             )
         #TODO gestion erreur
         data = json.loads(r.content)
+
         return json.dumps(data["filespayload"])
 
 
@@ -101,5 +110,12 @@ def DirectoryClient(app):
                 "total_per_page"    : 10
                 }}))
 
+
         data = json.loads(r.content)
+
+        for list_id in data["history"]:
+            print list_id["uid"]
+            f = File_metadata.get_file_meta(file_name=list_id["uid"])
+            print f
+
         return json.dumps(data)
