@@ -112,11 +112,16 @@ def DirectoryClient(app):
 
 
         data = json.loads(r.content)
+        print "_DATA ", data
 
         for list_id in data["history"]:
             print list_id["uid"]
-            f = File_metadata.get_file_meta(file_name=list_id["uid"])
-            print f
+            cat = File_metadata.get_file_meta(file_name=list_id["uid"])
+
+            if not cat:
+                list_id["category"] = "unknow"
+            else:
+                list_id["category"] = cat.pop()
 
         return json.dumps(data)
 

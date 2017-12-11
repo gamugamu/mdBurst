@@ -39,12 +39,13 @@ ng-controller="mdBurst-api-controller"
                         data-parent = "#accordion">
                         <div class="row">
                             <div class="col-xs-2 col-xm-2">
-                              <img class="img_cell center-block vertical-center" src="http://www.iptheologie.fr/wp-content/uploads/2016/04/picto-learn.png">
+                              <img class="img-rounded img_cell center-block vertical-center" src="{{ url_for('static', filename='img/category/cat_') + '{{post.category}}'+'.png'}}">
                             </div>
                             <div class="col-xs-10 col-xm-10">
                                 <h3 class="post_title">{{ "{{ post.name }}" }}</h3>
                                 <h6 class="post_owner"> {{ "{{ post.owner }}" }} </h6>
                                 <h6 class="post_date"> {{ "{{ post.date }}" }}  </h6>
+                                <h6 class="post_date"> {{ "{{ post.category }}" }}  </h6>
 
                             </div>
                         </div> <!-- row -->

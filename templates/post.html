@@ -37,11 +37,15 @@ ng-controller="mdBurst-api-post"
                 <div id="confirm_post">
                   <div id="post_confirm_step_1">
                     <p>choississez une categorie</p>
-                  <div class="categories">
-                    <div class="render_category" ng-repeat="cat in list_category">
-                      {{cat|angular}}
-                    </div><!-- category -->
-                  </div><!-- categories -->
+                    <div class="categories">
+                      <div  class="render_category"
+                            ng-repeat= "cat in list_category track by $index"
+                            ng-click= "category_selected($index)">
+                            <img src= "{{ url_for('static', filename='img/category/cat_') + '{{cat}}'+'.png'}}" >
+
+                        {{cat|angular}}
+                      </div><!-- category -->
+                    </div><!-- categories -->
 
                       <div class="btn-group-justified post_confirm_bt">
                         <a href="#" class="btn btn-primary" ng-click='post_next_step(-1)'>cancel</a>

@@ -12,10 +12,8 @@
       $scope.renderTagsHtml         = "";
       $scope.images_Base64_list     = [];
       $scope.idx_selected_category  = 0;
-      $scope.list_category          = ["un", "deux", "troix"];
+      $scope.list_category          = [];
 
-      // from SERVER
-      var categories = ["UX", "DEV", "IOS", "PYTH", "AND", "JAVA", "PROD"]
       $(window).ready(function() {
         get_categerie_name();
       });
@@ -26,9 +24,9 @@
         return new Array(+count);
       };
 
-      $scope.category_selected = function(row, column){
-        console.log("uu", row, column);
-        $scope.idx_selected_category = (row + 1) * (column + 1);
+      $scope.category_selected = function(index){
+        console.log("uu", index);
+        $scope.idx_selected_category = index;
         $scope.post_next_step(1);
       };
 
@@ -102,7 +100,6 @@
       $scope.postMD = function(title, payload){
         if (is_post_empty_dialboxed()) {}
         else{
-          console.log("-->", $scope.idx_selected_category);
           $http({
             method:   'POST',
             url:      ROOT_DIRECTORY_API_SERVICE + '/dc/post',
@@ -110,7 +107,7 @@
               "title"         : title,
               "payload"       : $sce.getTrustedHtml(payload),
               "image_base_64" : $scope.images_Base64_list,
-              "category"      : categories[$scope.idx_selected_category]}
+              "category"      : $scope.list_category[$scope.idx_selected_category]}
             )
           }).then(function(response) {
             // redirection homePage. le post doit être en haut de liste.
@@ -142,6 +139,7 @@
           url:      ROOT_DIRECTORY_API_SERVICE + '/dc/category_name'
         }).then(function(response) {
           $scope.list_category = response["data"];
+          console.log("category ", $scope.list_category );
         }); // http
       }
 

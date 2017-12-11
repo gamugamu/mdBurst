@@ -87,10 +87,11 @@ img {
 /* cells */
 
 .img_cell{
-    min-width:  35px;
-    min-height: 35px;
-    width:      35px;
-    height:     35px;
+    min-width:  45px;
+    min-height: 45px;
+    width:      45px;
+    height:     45px;
+    margin-top: -7px;
 }
 
 .mdcell{
@@ -104,12 +105,10 @@ img {
 .post_date{
   display:inline-block;
   position: relative;
-  background: red;
 }
 
 .post_owner{
   display:inline-block;
-  background: blue;
   position: relative;
 }
 /* sidebar */
