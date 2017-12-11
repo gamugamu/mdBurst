@@ -6,14 +6,20 @@
   angular.module('mdBurst-api', ['ngSanitize', 'ui.imagedrop'])
   .controller('mdBurst-api-post', ['$scope','$log', '$http', '$sce', '$compile', '$window',
     function($scope, $log, $http, $sce, $compile, $window) {
-      $scope.main_input           = "";
-      $scope.main_input_tohmtl    = "";
-      $scope.post_title           = "";
-      $scope.renderTagsHtml       = "";
-      $scope.images_Base64_list   = [];
-      $scope.idx_selected_category = 0;
+      $scope.main_input             = "";
+      $scope.main_input_tohmtl      = "";
+      $scope.post_title             = "";
+      $scope.renderTagsHtml         = "";
+      $scope.images_Base64_list     = [];
+      $scope.idx_selected_category  = 0;
+      $scope.list_category          = ["un", "deux", "troix"];
+
       // from SERVER
       var categories = ["UX", "DEV", "IOS", "PYTH", "AND", "JAVA", "PROD"]
+      $(window).ready(function() {
+        get_categerie_name();
+      });
+
       $('body').height(100);
       // utils
       $scope.range = function(count){
@@ -128,6 +134,15 @@
         }
 
         return should_open_dialog;
+      }
+
+      function get_categerie_name() {
+        $http({
+          method:   'GET',
+          url:      ROOT_DIRECTORY_API_SERVICE + '/dc/category_name'
+        }).then(function(response) {
+          $scope.list_category = response["data"];
+        }); // http
       }
 
       $scope.navigateTo = function(uri = ""){

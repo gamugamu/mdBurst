@@ -119,3 +119,7 @@ def DirectoryClient(app):
             print f
 
         return json.dumps(data)
+
+    @app.route('/dc/category_name', methods=["GET"])
+    def get_category_name():
+        return ConfigLoader.get_categories()

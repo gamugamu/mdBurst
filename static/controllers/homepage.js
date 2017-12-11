@@ -11,10 +11,10 @@
       $scope.graph              = [];
       $scope.current_page       = 0; // permet de connaitre la page en cours
       $scope.current_location   = "";
+
       var page_auto_refresh     = document.getElementById("pagination_autorefresh"); // auto refresh pagination
 
-
-      $(window).load(function() {
+      $(window).ready(function() {
         $scope.current_location = $location.path();
         $scope.$history($http, $scope.current_page);
       });

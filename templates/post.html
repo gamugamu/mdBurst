@@ -37,11 +37,12 @@ ng-controller="mdBurst-api-post"
                 <div id="confirm_post">
                   <div id="post_confirm_step_1">
                     <p>choississez une categorie</p>
-                      <div ng-repeat="x in range('2') track by $index " class="row">
-                          <div ng-repeat="y in range('4') track by $index" class="col-xs-3 post_cat_colon">
-                            <div class="post_confirm_category_select center-block" ng-click='category_selected($parent.$index, $index)'>u</div>
-                          </div><!-- col -->
-                      </div><!-- row -->
+                  <div class="categories">
+                    <div class="render_category" ng-repeat="cat in list_category">
+                      {{cat|angular}}
+                    </div><!-- category -->
+                  </div><!-- categories -->
+
                       <div class="btn-group-justified post_confirm_bt">
                         <a href="#" class="btn btn-primary" ng-click='post_next_step(-1)'>cancel</a>
                       </div><!-- post_confirm -->
