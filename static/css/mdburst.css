@@ -91,26 +91,58 @@ img {
     min-height: 45px;
     width:      45px;
     height:     45px;
-    margin-top: -7px;
 }
 
 .mdcell{
-  height: 60px;
+  height: 70px;
   background-color: white;
   border-bottom-style: solid;
   border-bottom-color: #dddddd;
   border-width: 0.1px;
 }
 
+.mdcell_col{
+  height: 68px;
+}
+
+.mdcell_col_2{
+  height: 60px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.align-middle {
+    vertical-align: middle;
+    display: inline-block;
+}
+
 .post_date{
   display:inline-block;
   position: relative;
+  color: gray;
 }
 
 .post_owner{
   display:inline-block;
   position: relative;
+  color: gray;
 }
+
+.side_bar{
+  max-width: 80px;
+}
+
+.picto_bar{
+  min-width: 80px;
+  max-width: 80px;
+}
+
+.content_bar{
+  min-width: 80px;
+  display:inline-block;
+  margin-left: 2px;
+}
+
 /* sidebar */
 #sidebar .toc{
   display: block;
