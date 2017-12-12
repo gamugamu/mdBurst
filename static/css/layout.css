@@ -2,6 +2,7 @@
 
 body {
     overflow-x: hidden;
+    background: red;
 }
 
 .header{
@@ -209,6 +210,9 @@ progress::-webkit-progress-bar {
         height: 0px;
         padding: 0px;
         display: none;
+        background-color: #eeeeee;
+        overflow:hidden;
+        margin: 5px;
         /*height: calc(40vh - 50px);*/
     }
 }
@@ -218,16 +222,28 @@ progress::-webkit-progress-bar {
         overflow-x: hidden;
     }
 
+    .parent_post_result{
+      overflow: hidden;
+    }
+
+    .post_result::-webkit-scrollbar {
+        display: none;  // Safari and Chrome
+    }
+
     .post_result{
         height: 200px;
         overflow-y: scroll;
         padding: 0px;
         display: block;
+        padding-right: 17px;
+
         /*height: calc(40vh - 50px);*/
     }
 
     /* result 50px*/
     .mkdown_post textarea.form-control{
+      margin: 10px;
+      background-color: blue;
       height: calc(100vh - 570px); /* 85 header */
     }
 }
