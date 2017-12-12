@@ -24,7 +24,9 @@ ng-controller="mdBurst-api-controller"
 {{super()}}
 <div class="row">
   <div class="col-xs-3 col-xm-3 col-xl-3 side_bar">
-    content here
+    <div class="left_cells">
+      <span class="glyphicon glyphicon-time elm_left_cells"><p class="left_cell_title"> Par date</p></span>
+    </div><!-- left_cells -->
   </div><!-- col -->
 
 <div class="col-xs-9 col-xm-9 col-xl-9">
@@ -43,8 +45,8 @@ ng-controller="mdBurst-api-controller"
                             </div> <!-- col -->
                             <div class="col-xs mdcell_col_2 content_bar">
                                 <h3 class="post_title">{{ "{{ post.name }}" }}</h3>
-                                <h6 class="post_owner"> {{ "{{ post.owner }}" }} </h6>
-                                <h6 class="post_date"> {{ "{{ post.date }}" }}  </h6>
+                                <p class="post_owner"> par {{ "{{ post.owner }}" }} </p>
+                                <p class="post_date"> le {{ "{{ post.date }}" }}  </p>
                             </div> <!-- col -->
                         </div> <!-- row -->
                       </div>
@@ -53,15 +55,11 @@ ng-controller="mdBurst-api-controller"
                       </div>
                     </div> <!-- endfor -->
               </div> <!-- accordion -->
-
-      <ul id="pagination_autorefresh" class="pagination">
-          <li ng-repeat="x in [].constructor(page_iterator.max_iteration) track by $index">
-            <a href={% raw %} "{{'#' + ($index + 1)}}" {% endraw %}>{{ "{{ $index + 1 }}" }}</a>
-          </li>
-      </ul> <!-- pagination -->
-      <div id="pagination_loader">
-      </div> <!-- pagination_loader -->
 </div> <!-- container -->
+<ul id="pagination_autorefresh" class="pagination">
+</ul> <!-- pagination -->
+<div id="pagination_loader" class="center-block mdl-spinner mdl-js-spinner is-active"></div>
+</div> <!-- pagination_loader -->
 </div><!-- col -->
 </div><!-- row -->
 

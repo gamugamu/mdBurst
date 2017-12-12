@@ -17,6 +17,13 @@
       $(window).ready(function() {
         $scope.current_location = $location.path();
         $scope.$history($http, $scope.current_page);
+        console.log("ready+++++");
+      });
+
+      document.addEventListener("DOMContentLoaded", function(event) {
+              // - Code to execute when all DOM content is loaded.
+              // - including fonts, images, etc.
+              console.log("loaded+++++");
       });
 
       // pour l'auto-refresh des pages lorsque l'on est en bas de page.
@@ -37,8 +44,7 @@
       $scope.$history = function($http, current_page, need_appending=false, completion=null){
         if ($scope.page_iterator == undefined ||
             $scope.page_iterator.max_iteration > current_page){
-              var page_loader = document.getElementById("pagination_loader"); // auto refresh pagination
-              page_loader.style.display = "block";
+              hide_display_loader(true)
 
               hl_history($http, current_page, function(history_posts, iterator){
                 // append ou refresh les posts
@@ -48,7 +54,8 @@
                   $scope.posts = history_posts
 
                 $scope.page_iterator      = iterator
-                page_loader.style.display = "none";
+                hide_display_loader(false)
+
                 // callback
                 if (completion != null){
                   completion()
@@ -100,6 +107,15 @@
       // GUI
       function display_wait(tag){
         $scope.getPayloadMD_tag = tag
+      }
+
+      function hide_display_loader(should_display){
+        var page_loader           = document.getElementById("pagination_loader"); // auto refresh pagination
+        if(should_display == true){
+          page_loader.style.display = "block";
+        }else{
+          page_loader.style.display = "none";
+        }
       }
 
       function isScrolledIntoView(elm) {

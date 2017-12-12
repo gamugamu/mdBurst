@@ -93,10 +93,19 @@ body {
 }
 
 #pagination_loader {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  position: center;
+  margin-top: 30px;
+  color: white;
+  display: none;
+}
+
+progress,                          /* Firefox  */
+progress[role][aria-valuenow] {    /* Polyfill */
+	background: red !important; /* !important is needed by the polyfill */
+}
+
+/* Chrome */
+progress::-webkit-progress-bar {
+	background: red !important;
 }
 
 #post_confirm_step_1{

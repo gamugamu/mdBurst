@@ -84,6 +84,24 @@ img {
   margin: 8px;
   float: right;
 }
+
+.left_cells{
+  background-color: #eeeeee;
+  width: 90px;
+  height: 25px;
+  margin-left: 20px;
+  margin-top: 30px;
+  color: gray !important;
+  border-left: 5px solid red;
+}
+
+.elm_left_cells{
+  margin-left: 5px;
+}
+
+.left_cell_title{
+  display: inline;
+}
 /* cells */
 
 .img_cell{
@@ -107,7 +125,7 @@ img {
 
 .mdcell_col_2{
   height: 60px;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 5px;
 }
 
@@ -120,16 +138,18 @@ img {
   display:inline-block;
   position: relative;
   color: gray;
+  font-size: x-small;
 }
 
 .post_owner{
   display:inline-block;
   position: relative;
   color: gray;
+  font-size: x-small;
 }
 
 .side_bar{
-  max-width: 80px;
+  max-width: 110px;
 }
 
 .picto_bar{
