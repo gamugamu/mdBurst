@@ -26,20 +26,38 @@ ng-controller="mdBurst-api-post"
 {{super()}}
           <div class="mkdown_post container-fluid"  ng-cloak>
             <div class="row parent_post_result">
-              <div class="col post_result">
-                <p ng-bind-html="main_input_tohmtl">{{main_input_tohmtl|angular}}</p>
+              <div class="col">
+                <div class="post_result">
+                  <div class="post_result_title">
+                    <h3 ng-bind-html="post_title"></h3>
+                  </div>
+                  <div class="post_result_p" ng-bind-html="main_input_tohmtl">
+                      {{main_input_tohmtl|angular}}
+                  </div><!-- post_result_p -->
+                </div><!-- post_result -->
               </div><!-- col -->
 
               <div class="col mkdown_input" imagedrop on-image-drop="imageDropped()">
-
                 <form action="#" class="container-fluid">
                   <div class="mdl-textfield mdl-js-textfield">
                     <input class="mdl-textfield__input" ng-model="post_title" placeholder="Title" type="text">
                   </div>
                 </form>
 
-                <textarea class="form-control ng-valid ng-dirty ng-valid-parse ng-touched mkdown_input_textarea" ng-keyup="$event.keyCode === 13 && convert_showdown(main_input)" ng-model="main_input"></textarea>
-                <div id="confirm_post">
+                <div class="container-fluid p_textarea">
+                  <textarea
+                    spellcheck="false"
+                    placeholder="Write post here"
+                    class="mui-textfield form-control ng-valid ng-dirty ng-valid-parse ng-touched"
+                    ng-keyup="$event.keyCode === 13 && convert_showdown(main_input)"
+                    ng-model="main_input">
+                  </textarea>
+                  <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="post_btn" ng-click=post_next_step(1)>
+                    Post  <span class="glyphicon glyphicon-share"></span>
+                  </button>
+                </div>
+
+                <div id="confirm_post" class="container-fluid">
                   <div id="post_confirm_step_1">
                     <p>choississez une categorie</p>
                     <div class="categories">
@@ -72,7 +90,6 @@ ng-controller="mdBurst-api-post"
                   </div><!-- step_2 -->
 
                 </div><!-- confirm_post -->
-                <button type="button" class="btn btn-primary btn-block" id="post_btn" ng-click=post_next_step(1)>Post</button>
                 <!-- 'postMD(post_title, main_input)' -->
               </div><!-- col -->
             </div><!-- row -->

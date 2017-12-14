@@ -2,7 +2,6 @@
 
 body {
     overflow-x: hidden;
-    background: red;
 }
 
 .header{
@@ -129,8 +128,11 @@ progress::-webkit-progress-bar {
 
 #post_btn{
   position: absolute;
+  float: right;
+  margin-top: 5px;
+  width: 160px;
+  background-color: #29364a;
   /* Set the fixed height of the footer here */
-  height: 60px;
 }
 
 #confirm_post{
@@ -155,6 +157,62 @@ progress::-webkit-progress-bar {
 
 .post_confirm_ok{
 
+}
+
+.post_result{
+    width: 50%;
+    overflow-y: scroll;
+    display: block;
+    float: left;
+    margin-top: 50px;
+    padding-top: 50px;
+    height: calc(100vh - 270px);
+    background-image: url("/static/img/hint_post.png");
+    background-repeat:   no-repeat;
+    background-position: center center;
+    border-width: 1px;
+    border-color: lightgray;
+    border-style:dashed;
+}
+
+.post_result_p{
+  width: auto;
+  height: auto;
+  margin: 5px;
+}
+
+.post_result_title{
+  width:  auto;
+  margin: 5px;
+  margin-top: -10px;
+  height: 50px;
+  font-style: italic;
+}
+
+.mkdown_post textarea.form-control{
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  overflow-y: scroll;
+  background-color: #F5F5F5;
+}
+
+.p_textarea{
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+display: none;
+}
+
+::selection {
+  color: #b3d4fc;
+   background-color: #f00;
+}
+
+::-moz-selection {
+  color: #b3d4fc;
+   background-color: #f00;
 }
 
 @media screen and (max-width: 400px) {
@@ -187,8 +245,6 @@ progress::-webkit-progress-bar {
       margin-bottom: 0px;
     }
 
-    .mkdown_post{
-    }
 
     .mkdown_input{
       height: 100%;
@@ -196,6 +252,7 @@ progress::-webkit-progress-bar {
 
     .mkdown_output{
       overflow-y: scroll;
+      color: gray;
     }
 
     .mkdown_input row{
@@ -204,16 +261,6 @@ progress::-webkit-progress-bar {
     /* result 50px*/
     .mkdown_post textarea.form-control{
       height: calc(100vh - 370px); /* 85 header */
-    }
-
-    .post_result{
-        height: 0px;
-        padding: 0px;
-        display: none;
-        background-color: #eeeeee;
-        overflow:hidden;
-        margin: 5px;
-        /*height: calc(40vh - 50px);*/
     }
 }
 
@@ -235,36 +282,39 @@ progress::-webkit-progress-bar {
         overflow-y: scroll;
         padding: 0px;
         display: block;
-        padding-right: 17px;
 
         /*height: calc(40vh - 50px);*/
     }
 
     /* result 50px*/
     .mkdown_post textarea.form-control{
-      margin: 10px;
-      background-color: blue;
+      margin: 0px;
       height: calc(100vh - 570px); /* 85 header */
     }
 }
 
-@media screen and (min-width: 781px) {
+@media screen and (min-width: 620px) {
     body {
         overflow-x: hidden;
     }
 
+    .parent_post_result{
+      width: 100%;
+      margin: 0px;
+    }
+
     .post_result{
-        width: 50%;
+        width: 40%;
         overflow-y: scroll;
-        padding: 0px;
+        margin-top: 10px;
         display: block;
         float: left;
-        height: calc(100vh - 245px);
+        height: calc(100vh - 270px);
     }
 
     .mkdown_input{
       float: right;
-      width: 50%;
+      width: 60%;
     }
 
     .mkdown_post textarea.form-control{
@@ -273,7 +323,8 @@ progress::-webkit-progress-bar {
 
     #post_btn{
       position: relative;
+      float: right;
+      margin-top: 5px;
       /* Set the fixed height of the footer here */
-      height: 60px;
     }
 }
