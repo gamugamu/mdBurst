@@ -52,27 +52,29 @@ ng-controller="mdBurst-api-post"
                     ng-keyup="$event.keyCode === 13 && convert_showdown(main_input)"
                     ng-model="main_input">
                   </textarea>
+
                   <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="post_btn" ng-click=post_next_step(1)>
                     Post  <span class="glyphicon glyphicon-share"></span>
                   </button>
                 </div>
 
-                <div id="confirm_post" class="container-fluid">
+                <div id="confirm_post">
                   <div id="post_confirm_step_1">
-                    <p>choississez une categorie</p>
+                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="cancel_btn" ng-click='post_next_step(-1)'>
+                      Cancel  <span class="glyphicon glyphicon-share"></span>
+                    </button>
+                    <h4 id="select_category_t">Choississez une categorie</h4>
+
+
                     <div class="categories">
                       <div  class="render_category"
                             ng-repeat= "cat in list_category track by $index"
                             ng-click= "category_selected($index)">
-                            <img src= "{{ url_for('static', filename='img/category/cat_') + '{{cat}}'+'.png'}}" >
-
-                        {{cat|angular}}
+                            <img class="img-rounded" src= "{{ url_for('static', filename='img/category/cat_') + '{{cat}}'+'.png'}}" >
+                            *
+                        <!-- {{cat|angular}} -->
                       </div><!-- category -->
                     </div><!-- categories -->
-
-                      <div class="btn-group-justified post_confirm_bt">
-                        <a href="#" class="btn btn-primary" ng-click='post_next_step(-1)'>cancel</a>
-                      </div><!-- post_confirm -->
                   </div><!-- step_1 -->
 
                   <div id="post_confirm_step_2">

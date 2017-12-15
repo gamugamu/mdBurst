@@ -9,10 +9,13 @@ body #file-drop{z-index:1000;position:fixed;top:0;left:0;width:100%;height:100%;
 .categories{
   overflow-y: scroll;
   height: 130px;
-  background: yellow;
+  display: block;
+  padding-top: -30px;
 }
 
 .render_category{
   display: inline-block;
   margin: 10px;
+  border-width: 1px;
+  border-color: white;
 }

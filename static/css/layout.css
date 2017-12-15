@@ -121,9 +121,6 @@ progress::-webkit-progress-bar {
 }
 
 .post_confirm_bt{
-  width: 100%;
-  position: absolute;
-  bottom: 0;
 }
 
 #post_btn{
@@ -135,11 +132,32 @@ progress::-webkit-progress-bar {
   /* Set the fixed height of the footer here */
 }
 
+#cancel_btn{
+  float: right;
+  margin-top: -2px;
+  margin-right: 30px;
+  width: 160px;
+  background-color: #29364a;
+  /* Set the fixed height of the footer here */
+}
+
+#select_category_t{
+  background-color: #6e828e;
+  text-align: center;
+  color: white;
+  height: 30px;
+  margin-top: -1px;
+  line-height: 150%;
+  font-weight: 200;
+}
+
 #confirm_post{
   height: 200px;
   left: 0;
   bottom: 0;
-  position: relative;
+  width: 100%;
+  position: absolute;
+  background-color: #e6eaec;
 }
 
 .post_cat_colon{
@@ -199,6 +217,12 @@ progress::-webkit-progress-bar {
 
 .p_textarea{
   overflow: hidden;
+}
+
+.category_choice{
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
