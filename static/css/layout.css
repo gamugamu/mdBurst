@@ -245,6 +245,16 @@ progress::-webkit-progress-bar {
   font-style: italic;
 }
 
+.chip_post{
+  background-color: #00cdcd;
+  margin: 2px;
+}
+
+.t_1{
+  color:#0e2f44;
+  font-weight: 300;
+}
+
 .mkdown_post textarea.form-control{
   -webkit-box-shadow: none;
   -moz-box-shadow: none;

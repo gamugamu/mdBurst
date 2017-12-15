@@ -46,7 +46,6 @@
       // call API, save post
       var counter_step = 0;
       $scope.post_next_step = function(step){
-        console.log("step", step, step <= 1 );
         if (step >= 0 && is_post_empty_dialboxed()) {}
         else{
           counter_step += step;
@@ -89,7 +88,7 @@
       };
 
       function tag_button(tag, idx){
-        return '<span class="mdl-chip mdl-chip--deletable tag_deletable" id=tag_' + parseInt(idx, 10) + '>' +
+        return '<span class="chip_post mdl-chip mdl-chip--deletable tag_deletable" id=tag_' + parseInt(idx, 10) + '>' +
                '<span class="mdl-chip__text">' + tag + '</span>' +
                '<button ng-click="tag_delete('+ idx + ')" ng-value=' + tag + 'type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button></span>'
       };
