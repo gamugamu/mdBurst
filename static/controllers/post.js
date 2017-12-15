@@ -25,7 +25,6 @@
       };
 
       $scope.category_selected = function(index){
-        console.log("uu", index);
         $scope.idx_selected_category = index;
         $scope.post_next_step(1);
       };
@@ -47,6 +46,9 @@
       // call API, save post
       var counter_step = 0;
       $scope.post_next_step = function(step){
+        console.log("step", step, step <= 1 );
+        if (step >= 0 && is_post_empty_dialboxed()) {}
+        else{
           counter_step += step;
           steps         = ["post_confirm_step_1", "post_confirm_step_2"];
           var post_btn  = document.getElementById("post_btn");
@@ -75,6 +77,7 @@
             var element = document.getElementById(steps[counter_step]);
             element.style.display = "block";
           }
+        }
       }// func
 
       // tag

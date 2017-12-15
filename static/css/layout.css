@@ -121,6 +121,41 @@ progress::-webkit-progress-bar {
 }
 
 .post_confirm_bt{
+  width: 161px;
+  height: 35px;
+  float: right;
+  display: inline;
+  margin-right: 30px;
+  margin-top: -3px;
+  border-radius: 2px;
+  border-width: 10px;
+}
+
+
+.post_add_tag{
+  display: inline;
+  float: left;
+  width: 300px;
+  margin-left: 50px;
+}
+
+.grouped_btn{
+  color: white;
+  background-color:#29364a;
+  width: 81px;
+   font-weight: 200;
+   margin-top: 0px;
+  border-color: #6e828e;
+  border-width: 0px;
+  height: 36px;
+  line-height: 175%;
+    font-weight: lighter;
+}
+
+.grouped_pconfirm_btn{
+  background-color: #ff4040;
+    font-weight: lighter;
+    color: white;
 }
 
 #post_btn{
@@ -129,6 +164,8 @@ progress::-webkit-progress-bar {
   margin-top: 5px;
   width: 160px;
   background-color: #29364a;
+  font-weight: 200;
+
   /* Set the fixed height of the footer here */
 }
 
@@ -138,6 +175,7 @@ progress::-webkit-progress-bar {
   margin-right: 30px;
   width: 160px;
   background-color: #29364a;
+    font-weight: 200;
   /* Set the fixed height of the footer here */
 }
 
@@ -148,7 +186,7 @@ progress::-webkit-progress-bar {
   height: 30px;
   margin-top: -1px;
   line-height: 150%;
-  font-weight: 200;
+  font-weight: lighter;
 }
 
 #confirm_post{

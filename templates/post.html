@@ -61,7 +61,7 @@ ng-controller="mdBurst-api-post"
                 <div id="confirm_post">
                   <div id="post_confirm_step_1">
                     <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="cancel_btn" ng-click='post_next_step(-1)'>
-                      Cancel  <span class="glyphicon glyphicon-share"></span>
+                      Cancel
                     </button>
                     <h4 id="select_category_t">Choississez une categorie</h4>
 
@@ -78,17 +78,18 @@ ng-controller="mdBurst-api-post"
                   </div><!-- step_1 -->
 
                   <div id="post_confirm_step_2">
-                    <form ng-submit="add_tag()">
+
+                    <div class="btn-group post_confirm_bt" role="group">
+                      <a href="#" class="grouped_btn btn btn-default" ng-click='post_next_step(-1)'>CANCEL</a>
+                      <a href="#" class="grouped_btn grouped_pconfirm_btn btn btn-default" ng-click='post_next_step(1)'>CONFIRM</a>
+                    </div><!-- post_confirm -->
+                    <h4 id="select_category_t">Ajoutez tags</h4>
+
+                    <form class="post_add_tag" ng-submit="add_tag()">
                       <input type="text" placeholder="ajouter tag" ng-model="tag_value">
                     </form>
+                    <div ng-bind-html="renderTagsHtml" id="renderTags"></div><!-- Deletable Chip -->
 
-                    <!-- Deletable Chip -->
-                    <div ng-bind-html="renderTagsHtml" id="renderTags"></div>
-
-                    <div class="btn-group-justified post_confirm_bt">
-                      <a href="#" class="btn btn-primary" ng-click='post_next_step(-1)'>cancel</a>
-                      <a href="#" class="btn btn-primary" ng-click='post_next_step(1)'>confirm</a>
-                    </div><!-- post_confirm -->
                   </div><!-- step_2 -->
 
                 </div><!-- confirm_post -->
