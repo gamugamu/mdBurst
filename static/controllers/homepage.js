@@ -13,7 +13,7 @@
       $scope.current_location   = "";
 
       var page_auto_refresh     = document.getElementById("pagination_autorefresh"); // auto refresh pagination
-
+      
       $(window).ready(function() {
         $scope.current_location = $location.path();
         $scope.$history($http, $scope.current_page);

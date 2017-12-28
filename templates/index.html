@@ -24,6 +24,7 @@ ng-controller="mdBurst-api-controller"
 {{super()}}
 <div class="row">
   <div class="col-xs-3 col-xm-3 col-xl-3 side_bar">
+    <span>&#8203;</span>
     <!--
     <div class="left_cells">
       <p class="left_cell_title"> Par date</p>
@@ -32,7 +33,7 @@ ng-controller="mdBurst-api-controller"
 
 <div class="col-xs-9 col-xm-9 col-xl-9">
 <div class="post_content" ng-cloak> <!-- If Needed Left and Right Padding in 'md' and 'lg' screen means use container class -->
-              <div id="accordion" class="accordion">
+              <div class="accordion">
                     <div ng-repeat="post in posts">
                       <div
                         ng-click    = "getPayloadMD(post.uid, 'collapse-' + $index, $index)"
@@ -45,15 +46,14 @@ ng-controller="mdBurst-api-controller"
                               <img class="img-rounded img_cell center-block vertical_center" src="{{ url_for('static', filename='img/category/cat_') + '{{post.category}}'+'.png'}}">
                             </div> <!-- col -->
                             <div class="col-xs mdcell_col_2 content_bar">
-                                <h3 class="post_title">{{ "{{ post.name }}" }}</h3>
+                                <p class="post_title">{{ "{{ post.name }}" }}</p>
                                 <p class="post_owner"> par {{ "{{ post.owner }}" }} </p>
                                 <p class="post_date"> le {{ "{{ post.date }}" }}  </p>
                                 <p class="post_date"> tags: {{ "{{ post.tags }}" }}  </p>
-
                             </div> <!-- col -->
                         </div> <!-- row -->
                       </div>
-                      <div id={% raw %} "{{ 'collapse-' + $index }}" {% endraw %} class="collapse">
+                      <div id={% raw %} "{{ 'collapse-' + $index }}" {% endraw %} class="collapse collapsable">
                         <div ng-bind-html="post.payload"> </div>
                       </div>
                     </div> <!-- endfor -->

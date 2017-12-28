@@ -69,6 +69,7 @@ body {
 
 .accordion {
   min-width: 390px;
+  width: 100%;
 }
 
 .vertical_center {
@@ -86,10 +87,8 @@ body {
   margin: 0px;
   margin-top: 5px;
   line-height: 90%;
-}
-
-.accordion{
-  width: 100%;
+  font-size: 14pt;
+  white-space: wrap;
 }
 
 #pagination_loader {
@@ -273,6 +272,10 @@ progress::-webkit-progress-bar {
     overflow-x: hidden;
 }
 
+.collapsable{
+    margin-left: 20px;
+}
+
 ::-webkit-scrollbar {
 display: none;
 }
@@ -293,6 +296,16 @@ display: none;
   }
 }
 
+@media screen and (max-width: 480px) {
+  .hide_sx_screen{
+    display: none;
+    margin-bottom: 0px;
+  }
+  .side_bar{
+    display: none;
+  }
+}
+
 @media screen and (max-width: 620px) {
     body {
         overflow-x: hidden;
@@ -308,15 +321,6 @@ display: none;
     .logo {
       float: left;
     }
-    .image_profil{
-      margin-bottom: 0px;
-    }
-
-    .hide_sx_screen{
-      display: none;
-      margin-bottom: 0px;
-    }
-
 
     .mkdown_input{
       height: 100%;
