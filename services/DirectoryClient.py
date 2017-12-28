@@ -28,7 +28,6 @@ def DirectoryClient(app):
             data    = json.dumps(data)
             )
 
-        print "graph", r.content
         return r.content
 
     @app.route('/dc/post', methods=["POST"])
@@ -38,13 +37,11 @@ def DirectoryClient(app):
         payload     = post["payload"]
         title       = post["title"]
         category    = post["category"]
-        print "category", category
+
         for idx, image_64 in enumerate(post["image_base_64"]):
             # Cloudinary
             image_tag   = "data:image_" + str(idx)
             image_Link  = Cloudinary.upload_image(image_64)
-            print "D", image_Link
-
             payload     = payload.replace(image_tag, "![](" + image_Link + ")")
 
         token           = DAA.getToken()
@@ -69,7 +66,11 @@ def DirectoryClient(app):
 
         # success
         if int(result["error"]["code"]) == 1:
-            File_metadata.select_category_to_file(file_name=result["filepayload"]["uid"], category=category)
+            file_uid = result["filepayload"]["uid"]
+            File_metadata.select_category_to_file(file_name=file_uid, category=category)
+
+            for tag in post["tags"]:
+                File_metadata.set_tag_to_file(file_name=file_uid, tag=tag)
         else:
             #TODO error handling
             pass
@@ -90,9 +91,7 @@ def DirectoryClient(app):
             )
         #TODO gestion erreur
         data = json.loads(r.content)
-
         return json.dumps(data["filespayload"])
-
 
     @app.route('/dc/history', methods=["POST"])
     def get_history():
@@ -112,18 +111,25 @@ def DirectoryClient(app):
 
 
         data = json.loads(r.content)
-        print "_DATA ", data
 
         for list_id in data["history"]:
-            print list_id["uid"]
-            cat = File_metadata.get_file_meta(file_name=list_id["uid"])
+            file_id = list_id["uid"]
+            cat     = File_metadata.get_file_category(file_name=file_id)
+            tags    = File_metadata.get_tags_from_file(file_name=file_id)
+            print "TAGS ", tags
+            list_id["tags"] = list(tags)
 
             if not cat:
                 list_id["category"] = "unknow"
             else:
-                list_id["category"] = cat.pop()
+                list_id["category"] = cat.pop() # Les catégories sont dans des tableaux. Mais pas nécessaire.
 
         return json.dumps(data)
+
+    @app.route('/dc/searchByTags/<tags>', methods=["GET"])
+    def search_by_tag(tags):
+         files = File_metadata.get_files_by_tag(tags)
+         return json.dumps(list(files))
 
     @app.route('/dc/category_name', methods=["GET"])
     def get_category_name():

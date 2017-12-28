@@ -24,6 +24,7 @@ ng-controller="mdBurst-api-controller"
 {{super()}}
 <div class="row">
   <div class="col-xs-3 col-xm-3 col-xl-3 side_bar">
+    <!--
     <div class="left_cells">
       <p class="left_cell_title"> Par date</p>
     </div><!-- left_cells -->
@@ -47,6 +48,8 @@ ng-controller="mdBurst-api-controller"
                                 <h3 class="post_title">{{ "{{ post.name }}" }}</h3>
                                 <p class="post_owner"> par {{ "{{ post.owner }}" }} </p>
                                 <p class="post_date"> le {{ "{{ post.date }}" }}  </p>
+                                <p class="post_date"> tags: {{ "{{ post.tags }}" }}  </p>
+
                             </div> <!-- col -->
                         </div> <!-- row -->
                       </div>

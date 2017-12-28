@@ -13,6 +13,7 @@
       $scope.images_Base64_list     = [];
       $scope.idx_selected_category  = 0;
       $scope.list_category          = [];
+      $scope.tags                   = [];
 
       $(window).ready(function() {
         get_categerie_name();
@@ -83,6 +84,8 @@
       $scope.add_tag = function(){
         var text = $sce.trustAsHtml(tag_button($scope.tag_value));
         var myEl = angular.element(document.querySelector('#renderTags'));
+        $scope.tags.push($scope.tag_value);
+
         myEl.append(tag_button($scope.tag_value, $window.document.getElementsByClassName("tag_deletable").length))
         $compile(myEl.contents())($scope);
       };
@@ -96,6 +99,11 @@
       $scope.tag_delete = function(tag){
           var myEl = angular.element( document.querySelector( '#tag_'+ tag ) );
           myEl.remove();
+
+          var index = $scope.tags.indexOf(tag);    // <-- Not supported in <IE9
+          if (index !== -1) {
+            $scope.tags.splice(index, 1);
+          }
       }
 
       // call API, save post
@@ -109,7 +117,9 @@
               "title"         : title,
               "payload"       : $sce.getTrustedHtml(payload),
               "image_base_64" : $scope.images_Base64_list,
-              "category"      : $scope.list_category[$scope.idx_selected_category]}
+              "category"      : $scope.list_category[$scope.idx_selected_category],
+              "tags"          : $scope.tags
+            }
             )
           }).then(function(response) {
             // redirection homePage. le post doit être en haut de liste.
