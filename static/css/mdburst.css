@@ -61,9 +61,13 @@ hr{
 
 /* elements image */
 img {
- border: 0 none!important;
- max-width: 100%!important;
- vertical-align: middle!important;
+  border: 0 none!important;
+  max-width: 100%!important;
+  vertical-align: middle!important;
+  border-radius: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* elements emoji */
@@ -115,8 +119,8 @@ img {
 .mdcell{
   height: 70px;
   background-color: white;
-  border-bottom-style: solid;
-  border-bottom-color: #dddddd;
+  border-top-style: solid;
+  border-top-color: #dddddd;
   border-width: 0.1px;
 }
 
