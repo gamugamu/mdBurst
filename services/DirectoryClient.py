@@ -49,7 +49,7 @@ def DirectoryClient(app):
         payload         = {"payload" : {
             "parentId"  : MD_BUSTMD_UID,
             "name"      : title,
-            "type"      : 2,
+            "type"      : 3, # markdown
             "owner"     : "unknow",
             "title"     : title,
             "payload"   : payload
@@ -95,7 +95,7 @@ def DirectoryClient(app):
 
     @app.route('/dc/history', methods=["POST"])
     def get_history():
-        post            =  request.get_json()
+        post            = request.get_json()
         token           = DAA.getToken()
         headers_auth    = {'content-type': 'application/json', TOKEN_HEADER : token}
 
@@ -111,26 +111,46 @@ def DirectoryClient(app):
 
 
         data = json.loads(r.content)
-
-        for list_id in data["history"]:
-            file_id = list_id["uid"]
-            cat     = File_metadata.get_file_category(file_name=file_id)
-            tags    = File_metadata.get_tags_from_file(file_name=file_id)
-            print "TAGS ", tags
-            list_id["tags"] = list(tags)
-
-            if not cat:
-                list_id["category"] = "unknow"
-            else:
-                list_id["category"] = cat.pop() # Les catégories sont dans des tableaux. Mais pas nécessaire.
+        feed_with_metadata(data["history"])
 
         return json.dumps(data)
 
     @app.route('/dc/searchByTags/<tags>', methods=["GET"])
     def search_by_tag(tags):
-         files = File_metadata.get_files_by_tag(tags)
-         return json.dumps(list(files))
+        files = File_metadata.get_files_by_tag(tags)
+
+        token           = DAA.getToken()
+        headers_auth    = {'content-type': 'application/json', TOKEN_HEADER : token}
+
+        r = requests.post(
+            ConfigLoader.get("url_DIRECTORY_API") + 'filesheader',
+            headers = headers_auth,
+            data    = json.dumps({"filesid" : list(files)}))
+
+        data = json.loads(r.content)
+        print data["error"]["code"]
+        if data["error"]["code"] == "1" :# success
+            feed_with_metadata(data["filesheader"])
+            return json.dumps(data)
+        else:
+            return ""
 
     @app.route('/dc/category_name', methods=["GET"])
     def get_category_name():
         return ConfigLoader.get_categories()
+
+# helper
+# ! inout. Pas de return.
+def feed_with_metadata(list_ids):
+    for list_id in list_ids:
+        file_id = list_id["uid"]
+        cat     = File_metadata.get_file_category(file_name=file_id)
+        tags    = File_metadata.get_tags_from_file(file_name=file_id)
+        list_id["tags"] = list(tags)
+
+        if not cat:
+            list_id["category"] = "unknow"
+        else:
+            list_id["category"] = cat.pop() # Les catégories sont dans des tableaux. Mais pas nécessaire.
+
+    return list_id

@@ -13,11 +13,10 @@
       $scope.current_location   = "";
 
       var page_auto_refresh     = document.getElementById("pagination_autorefresh"); // auto refresh pagination
-      
+
       $(window).ready(function() {
         $scope.current_location = $location.path();
         $scope.$history($http, $scope.current_page);
-        console.log("ready+++++");
       });
 
       document.addEventListener("DOMContentLoaded", function(event) {
@@ -62,6 +61,29 @@
                 }
           })
         }
+      };
+
+      $scope.searchByTag = function () {
+        if($scope.tag  === undefined || $scope.tag === ""){
+          $scope.page_iterator  = undefined;
+          $scope.current_page   = 0;
+          $scope.$history($http, $scope.current_page);
+        }else{
+          $scope.$search($http, $scope.tag);
+        }
+      }
+
+      $scope.$search = function($http, tag){
+          hide_display_loader(true)
+          $scope.current_page   = 0; // clean up all the history graph.
+          $scope.page_iterator  = 0
+
+          hl_search_by_tag($http, tag, function(tagged_posts){
+                // append ou refresh les posts
+                $scope.posts = tagged_posts
+
+                hide_display_loader(false)
+          }) // hl_history
       };
 
       // récupère le détail du post

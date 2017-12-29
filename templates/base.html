@@ -33,14 +33,14 @@
           <h3 class="logo">MDBurst</h3>
           <!-- Expandable Textfield -->
 
-          <form action="#" class="search_box">
+          <form class="search_box" ng-model="tag" ng-submit="searchByTag()">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable search_box_inside">
               <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
                 <i class="material-icons">search</i>
               </label>
               <div class="mdl-textfield__expandable-holder">
-                <input class="mdl-textfield__input" type="text" id="sample6">
-                <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+                <input class="mdl-textfield__input" type="text" id="sample6" ng-model="tag">
+                <label class="mdl-textfield__label" for="sample-expandable" ></label>
               </div>
             </div>
           </form>
