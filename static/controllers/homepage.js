@@ -12,6 +12,7 @@
       $scope.current_page       = 0; // permet de connaitre la page en cours
       $scope.current_location   = "";
 
+      $scope.display_search_by_tag = true;
       var page_auto_refresh     = document.getElementById("pagination_autorefresh"); // auto refresh pagination
 
       $(window).ready(function() {
@@ -87,17 +88,9 @@
       };
 
       // récupère le détail du post
-      $scope.getPayloadMD = function(file_id, tag, idx){
-        $scope.getPayloadMD_tag = 0
-
-        if(!$('#'+tag).hasClass('in') && $scope.posts[idx].payload == ""){
-          timerId = setTimeout(function() {
-            function display_wait(tag){
-              $scope.getPayloadMD_tag = tag
-              $scope.$apply()
-            };
-            display_wait(tag)
-          }, 1000);
+      $scope.getPayloadMD = function($event, file_id, tag, idx){
+        if(!$('#'+tag).hasClass('in') && ($scope.posts[idx].payload == "" || $scope.posts[idx].payload == undefined)){
+          $event.stopPropagation();
 
           // call API
           $http({
@@ -107,13 +100,12 @@
           }).then(function(response) {
             hl_feed_graph(response.data[0], $scope.posts,
               function(index) {
-                $scope.posts[index].payload = cv_convert_showdown($scope.posts[index].payload)
+                $scope.posts[index].payload = cv_convert_showdown($scope.posts[index].payload);
+                $('#'+tag).collapse('show');
               }
             );
-            $scope.getPayloadMD_tag = 0 // flag :(
-            clearTimeout(timerId);
           }); // http
-        }
+        } // if
       }// func
 
       $scope.$watch(function(){
@@ -128,7 +120,6 @@
 
       // GUI
       function display_wait(tag){
-        $scope.getPayloadMD_tag = tag
       }
 
       function hide_display_loader(should_display){

@@ -33,7 +33,7 @@
           <h3 class="logo">MDBurst</h3>
           <!-- Expandable Textfield -->
 
-          <form class="search_box" ng-model="tag" ng-submit="searchByTag()">
+          <form class="search_box" ng-model="tag" ng-submit="searchByTag()" ng-show="display_search_by_tag" ng-cloak>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable search_box_inside">
               <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
                 <i class="material-icons">search</i>
